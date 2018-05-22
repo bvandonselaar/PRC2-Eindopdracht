@@ -7,18 +7,19 @@ namespace TestTicketShop
     [TestClass]
     public class TestBuyer
     {
+        string name;
+        DateTime Birth;
+        string Address;
         [TestInitialize]
         public void TestInitialize()
         {
-            
+            name = "J. Johansson";
+            Birth = new DateTime(2018, 9, 12);
+            Address = "HomeStreet 1";
         }
         [TestMethod]
         public void TestBuyerConstructor()
         {
-            string name = "J. Johansson";
-            DateTime Birth = new DateTime(2018, 9, 12);
-            string Address = "HomeStreet 1";
-
             Buyer buyer = new Buyer(name, Birth, Address);
 
             Assert.AreEqual(name, buyer.Name);
@@ -28,10 +29,6 @@ namespace TestTicketShop
         [TestMethod]
         public void TestBuyerToString()
         {
-            string name = "J. Johansson";
-            DateTime Birth = new DateTime(2018, 9, 12);
-            string Address = "HomeStreet 1";
-
             Buyer buyer = new Buyer(name, Birth, Address);
             string expected = ("Buyer: " + name + ", " + Birth.ToShortDateString() + ", " + Address);
             Assert.AreEqual(expected, buyer.ToString());

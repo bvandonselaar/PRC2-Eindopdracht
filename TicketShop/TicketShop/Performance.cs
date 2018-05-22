@@ -10,9 +10,8 @@ namespace TicketShop
     {
         public string Artist { get; private set; }
         public string Demands { get; private set; }
-        public override double Price { get; }
 
-        public Performance(string name, int id, DateTime date, string location, int availableSeats, string artist, string demands) :base(name, id, date, location, availableSeats)
+        public Performance(string name, int id, DateTime date, string location, int availableSeats, string artist, string demands):base(name, id, date, location, availableSeats)
         {
             Artist = artist;
             Demands = demands;

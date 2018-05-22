@@ -7,25 +7,35 @@ namespace TestTicketShop
     [TestClass]
     public class TestAdministration
     {
+        // these are needed on every test
+        Administration a;
+        string name;
+        int id;
+        DateTime date;
+        string location;
+        int availableSeats;
+        string artist;
+        string demands;
+        string player;
+        string opponent;
+
         [TestInitialize]
         public void TestInitialize()
         {
-
+            a = new Administration();
+            name = "J. Johansson";
+            id = 10;
+            date = new DateTime(2018, 9, 12);
+            location = "HomeStreet 1";
+            availableSeats = 15000;
+            artist = "M. Jackson";
+            demands = "White color";
+            player = "Red Sox";
+            opponent = "Yankees";
         }
         [TestMethod]
         public void TestAdminAddEventCorrect()
         {
-            Administration a = new Administration();
-            string name = "J. Johansson";
-            int id = 10;
-            DateTime date = new DateTime(2018, 9, 12);
-            string location = "HomeStreet 1";
-            int availableSeats = 15000;
-            string artist = "M. Jackson";
-            string demands = "White color";
-            string player = "Red Sox";
-            string opponent = "Yankees";
-
             Event e1 = new Performance(name, id, date, location, availableSeats, artist, demands);
             Event e2 = new Match(name, id, date, location, availableSeats, player, opponent);
 
@@ -36,8 +46,6 @@ namespace TestTicketShop
         [TestMethod]
         public void TestAdminAddEventIncorrectByNull()
         {
-            Administration a = new Administration();
-
             Event e1 = null;
 
             Assert.AreEqual(false, a.AddEvent(e1));
@@ -45,26 +53,16 @@ namespace TestTicketShop
         [TestMethod]
         public void TestAdminDeleteEventCorrect()
         {
-            Administration a = new Administration();
-
-            string name = "J. Johansson";
-            int id = 10;
-            DateTime date = new DateTime(2018, 9, 12);
-            string location = "HomeStreet 1";
-            int availableSeats = 15000;
-            string artist = "M. Jackson";
-            string demands = "White color";
-
             Event e1 = new Performance(name, id, date, location, availableSeats, artist, demands);
             a.AddEvent(e1); 
 
             Assert.AreEqual(true, a.DeleteEvent(id));
+            Assert.AreEqual(0, a.Events.Count);
+
         }
         [TestMethod]
         public void TestAdminDeleteEventIncorrectByNull()
         {
-            Administration a = new Administration();
-
             int id = 0;
             a.DeleteEvent(id);
 
@@ -72,36 +70,18 @@ namespace TestTicketShop
         }
         [TestMethod]
         public void TestAdminFindEventFound()
-        {
-            Administration a = new Administration();
-            
-            string name = "J. Johansson";
-            int id = 10;
-            DateTime date = new DateTime(2018, 9, 12);
-            string location = "HomeStreet 1";
-            int availableSeats = 15000;
-            string artist = "M. Jackson";
-            string demands = "White color";
-
+        {           
             Event e1 = new Performance(name, id, date, location, availableSeats, artist, demands);
             a.AddEvent(e1);
+
             Assert.AreEqual(e1, a.findEvent(id));
         }
         [TestMethod]
         public void TestAdminFindEventNotFound()
         {
-            Administration a = new Administration();
-
-            string name = "J. Johansson";
-            int id = 10;
-            DateTime date = new DateTime(2018, 9, 12);
-            string location = "HomeStreet 1";
-            int availableSeats = 15000;
-            string artist = "M. Jackson";
-            string demands = "White color";
-
             Event e1 = new Performance(name, id, date, location, availableSeats, artist, demands);
             a.AddEvent(e1);
+
             Assert.AreEqual(null, a.findEvent(30));
         }
     }

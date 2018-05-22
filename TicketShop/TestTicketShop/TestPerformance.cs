@@ -7,22 +7,29 @@ namespace TestTicketShop
     [TestClass]
     public class TestPerformance
     {
+        string name;
+        string artist;
+        string demands;
+        int id;
+        DateTime date;
+        string location;
+        int availableSeats;
+        int Price;
         [TestInitialize]
         public void TestInitialize()
         {
-
+            name = "J. Johansson";
+            artist = "M. Jackson";
+            demands = "White color";
+            id = 10;
+            date = new DateTime(2018, 9, 12);
+            location = "HomeStreet 1";
+            availableSeats = 15000;
+            Price = 0;
         }
         [TestMethod]
         public void TestPerformanceConstructor()
         {
-            string name = "J. Johansson";
-            string artist = "M. Jackson";
-            string demands = "White color";
-            int id = 10;
-            DateTime date = new DateTime(2018, 9, 12);
-            string location = "HomeStreet 1";
-            int availableSeats = 15000;
-
             Performance p = new Performance(name, id, date, location, availableSeats, artist, demands);
 
             Assert.AreEqual(name, p.Name);
@@ -32,25 +39,15 @@ namespace TestTicketShop
             Assert.AreEqual(location, p.Location);
             Assert.AreEqual(availableSeats, p.AvailableSeats);
             Assert.AreEqual(date, p.Date);
-
+            Assert.AreEqual(Price, p.Price);
         }
         [TestMethod]
         public void TestPerformanceToString()
         {
-            string name = "J. Johansson";
-            string artist = "M. Jackson";
-            string demands = "White color";
-            int id = 10;
-            DateTime date = new DateTime(2018, 9, 12);
-            string location = "HomeStreet 1";
-            int availableSeats = 15000;
-            int Price = 0;
-
             Performance p = new Performance(name, id, date, location, availableSeats, artist, demands);
-            string expected = ("Performance: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price);
+            string expected = ("Performance: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price + ", " + artist + ", " + demands);
 
             Assert.AreEqual(expected, p.ToString());
-
         }
     }
 }

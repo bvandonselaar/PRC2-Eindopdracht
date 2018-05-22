@@ -6,19 +6,31 @@ using System.Threading.Tasks;
 
 namespace TicketShop
 {
-    public class Ticket
+    public class Ticket : ISellable
     {
-        public int Id{ get; private set; }
+
+        public int Id { get; private set; }
         public int Class { get; private set; }
         public int Seat { get; private set; }
         public Buyer Buyer { get; set; }
+        public double StartingPrice { get; private set; }
 
-        public Ticket(int id, int clas, int seat, Buyer buyer)
+
+        public double Price
+        {
+            get
+            {
+                return (1 / Class) * StartingPrice;
+            }
+        }
+
+        public Ticket(int id, int clas, int seat, Buyer buyer, double startingPrice)
         {
             Id = id;
             Class = clas;
             Seat = seat;
             Buyer = buyer;
+            StartingPrice = startingPrice;
         }
         public override string ToString()
         {
