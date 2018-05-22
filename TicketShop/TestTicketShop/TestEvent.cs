@@ -7,25 +7,33 @@ namespace TestTicketShop
     [TestClass]
     public class TestEvent
     {
+        string name;
+        int id;
+        DateTime date;
+        string location;
+        int availableSeats;
+        string artist;
+        string demands;
+        string player;
+        string opponent;
+        int Price;
 
         [TestInitialize]
         public void TestInitialize()
         {
-
+            name = "J. Johansson";
+            id = 10;
+            date = new DateTime(2018, 9, 12);
+            location = "HomeStreet 1";
+            availableSeats = 15000;
+            artist = "M. Jackson";
+            demands = "White color";
+            player = "Red Sox";
+            opponent = "Yankees";
         }
         [TestMethod]
         public void TestEventConstructor()
         {
-            string name = "J. Johansson";
-            int id = 10;
-            DateTime date = new DateTime(2018, 9, 12);
-            string location = "HomeStreet 1";
-            int availableSeats = 15000;
-            string artist = "M. Jackson";
-            string demands = "White color";
-            string player = "Red Sox";
-            string opponent = "Yankees";
-
             Event e1 = new Performance(name, id, date, location, availableSeats, artist, demands);
             Event e2 = new Match(name, id, date, location, availableSeats, player, opponent);
 
@@ -39,26 +47,19 @@ namespace TestTicketShop
         [TestMethod]
         public void TestEventToString()
         {
-            string name = "J. Johansson";
-            int id = 10;
-            DateTime date = new DateTime(2018, 9, 12);
-            string location = "HomeStreet 1";
-            int availableSeats = 15000;
-            int Price = 0;
-            string artist = "M. Jackson";
-            string demands = "White color";
-            string player = "Red Sox";
-            string opponent = "Yankees";
-
             Event e1 = new Performance(name, id, date, location, availableSeats, artist, demands);
             Event e2 = new Match(name, id, date, location, availableSeats, player, opponent);
-            string expected = ("Performance: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price);
-            string expected2 = ("Match: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price);
+            string expected = ("Performance: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price + ", " + artist + ", " + demands);
+            string expected2 = ("Match: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price + ", " + player + ", " + opponent);
 
             Assert.AreEqual(expected, e1.ToString());
             Assert.AreEqual(expected2, e2.ToString());
         }
 
+        [TestMethod]
+        public void TestEventOrderTickets()
+        {
+        }
         [TestMethod]
         public void TestEventFindTicket()
         {
@@ -80,10 +81,7 @@ namespace TestTicketShop
         public void TestEventDeleteTicketsByID()
         {
         }
-        [TestMethod]
-        public void TestEventOrderTickets()
-        {
-        }
+
 
     }
 }

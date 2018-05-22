@@ -10,7 +10,6 @@ namespace TicketShop
         public DateTime Date { get; private set; }
         public string Location { get; private set; }
         public int AvailableSeats { get; private set; }
-        public abstract double Price { get; }
         public List<Ticket> Tickets { get; private set; }
         public List<Buyer> Buyers { get; private set; }
 
@@ -23,10 +22,13 @@ namespace TicketShop
             AvailableSeats = availableSeats;
             Buyers = new List<Buyer>();
             Tickets = new List<Ticket>();
+        }
 
-            for (int i = 0; i < availableSeats; i++)
+        public void generateTickets (double startingPrice)
+        {
+            for (int i = 0; i < AvailableSeats; i++)
             {
-                Ticket ticket = new Ticket(i, 1, i, new Buyer("none", new DateTime(1,1,1), "none"));
+                Ticket ticket = new Ticket(i, 1, i, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
                 Tickets.Add(ticket);
             }
         }
@@ -67,7 +69,8 @@ namespace TicketShop
             if (t == null) { return false; }
 
             int index = Tickets.IndexOf(t);
-            Tickets[index] = new Ticket(ticketID, 0, index, new Buyer("none", new DateTime(0, 0, 0), "none"));
+            double startingPrice = Tickets[index].StartingPrice;
+            Tickets[index] = new Ticket(ticketID, 0, index, new Buyer("none", new DateTime(0, 0, 0), "none"), startingPrice);
             return true;
         }
 
@@ -76,7 +79,8 @@ namespace TicketShop
             while(Tickets.Exists(x => x.Buyer.Name == buyerName))
             {
                 int index = Tickets.FindIndex(y => y.Buyer.Name == buyerName);
-                Tickets[index] = new Ticket(index, 0, index, new Buyer("none", new DateTime(0, 0, 0), "none"));
+                double startingPrice = Tickets[index].StartingPrice;
+                Tickets[index] = new Ticket(index, 0, index, new Buyer("none", new DateTime(0, 0, 0), "none"), startingPrice);
             }
             return true;
         }
@@ -110,8 +114,7 @@ namespace TicketShop
             + ", " + Name
             + ", " + Date
             + ", " + Location
-            + ", Seats: " + AvailableSeats
-            + ", Price: €" + Price;
+            + ", Seats: " + AvailableSeats;
         }
     }
 }

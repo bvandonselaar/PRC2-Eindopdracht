@@ -7,21 +7,25 @@ namespace TestTicketShop
     [TestClass]
     public class TestTicket
     {
+        int id;
+        int clas;
+        int seat;
+        string name;
+        DateTime Birth;
+        string Address;
         [TestInitialize]
         public void TestInitialize()
         {
-
+            id = 10;
+            clas = 2;
+            seat = 10;
+            name = "J. Johansson";
+            Birth = new DateTime(2018, 9, 12);
+            Address = "HomeStreet 1";
         }
         [TestMethod]
         public void TestTicketConstructor()
         {
-            int id = 10;
-            int clas = 2;
-            int seat = 10;
-            string name = "J. Johansson";
-            DateTime Birth = new DateTime(2018, 9, 12);
-            string Address = "HomeStreet 1";
-
             Buyer buyer = new Buyer(name, Birth, Address);
             Ticket t = new Ticket(id, clas, seat, buyer);
 
@@ -36,13 +40,6 @@ namespace TestTicketShop
         [TestMethod]
         public void TestTicketToString()
         {
-            int id = 10;
-            int clas = 2;
-            int seat = 10;
-            string name = "J. Johansson";
-            DateTime Birth = new DateTime(2018, 9, 12);
-            string Address = "HomeStreet 1";
-
             Buyer buyer = new Buyer(name, Birth, Address);
             Ticket t = new Ticket(id, clas, seat, buyer);
             string expected = (id + ", " + clas + ", " + seat + ", " + buyer);

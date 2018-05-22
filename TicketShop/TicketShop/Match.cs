@@ -10,7 +10,6 @@ namespace TicketShop
     {
         public string Player { get; private set; }
         public string Opponent { get; private set; }
-        public override double Price { get; }
 
         public Match(string name, int id, DateTime date, string location, int availableSeats, string player, string opponent) :base(name, id, date, location, availableSeats)
         {
