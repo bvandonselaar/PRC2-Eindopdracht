@@ -45,6 +45,11 @@ namespace TicketShop
             return null;
         }
 
+        public int indexOf(int id)
+        {
+            return Events.IndexOf(findEvent(id));
+        }
+
         public void Save(string filename)
         {
            /* - Deze moeten staan in de form

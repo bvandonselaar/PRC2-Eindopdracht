@@ -33,7 +33,6 @@ namespace TicketShop
             int amountOfTabs = tabControl_administration.TabPages.Count;
             for (int i = 1; i < amountOfTabs; i++)
             {
-                Console.WriteLine(amountOfTabs);
                 tabControl_administration.TabPages.Remove(tabs[i]);
             }
         }
@@ -44,6 +43,16 @@ namespace TicketShop
             foreach (Event e in administration.Events)
             {
                 listBox_events.Items.Add(e.ToString());
+            }
+        }
+
+        private void loadTickets(int index)
+        {
+            listBox_tickets.Items.Clear();
+            foreach (Ticket t in administration.Events[index].Tickets)
+            {
+                Console.WriteLine(t.ToString());
+                listBox_tickets.Items.Add(t.ToString());
             }
         }
 
@@ -144,16 +153,27 @@ namespace TicketShop
         {
             if (listBox_events.SelectedItem != null)
             {
-                string[] parts = listBox_events.SelectedItem.ToString().Split(':')[1].Split(',');
-                administration.DeleteEvent(Convert.ToInt32(parts[0]));
+                administration.DeleteEvent(getEventId());
                 loadEvents();
             }
-            else { MessageBox.Show("Select event"); }
+            else { MessageBox.Show("Select Event"); }
+        }
+
+        private int getEventId()
+        {
+            string[] parts = listBox_events.SelectedItem.ToString().Split(':')[1].Split(',');
+            return Convert.ToInt32(parts[0]);
         }
 
         private void button_showTickets_Click(object sender, EventArgs e)
         {
-            loadTab(2);
+            if (listBox_events.SelectedItem != null)
+            {
+                int eventIndex = administration.indexOf(getEventId());
+                loadTab(2);
+                loadTickets(eventIndex);
+            }
+            else { MessageBox.Show("Select Event"); }
         }
 
         private void button_ticketsBack_Click(object sender, EventArgs e)
