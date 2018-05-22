@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketShop", "TicketShop\TicketShop.csproj", "{EB941877-4367-4B5D-B5EC-8E83E71DDE25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTicketShop", "TestTicketShop\TestTicketShop.csproj", "{C65325EA-1D05-4D7F-8912-4396C17C978B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB941877-4367-4B5D-B5EC-8E83E71DDE25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB941877-4367-4B5D-B5EC-8E83E71DDE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB941877-4367-4B5D-B5EC-8E83E71DDE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB941877-4367-4B5D-B5EC-8E83E71DDE25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C65325EA-1D05-4D7F-8912-4396C17C978B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C65325EA-1D05-4D7F-8912-4396C17C978B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C65325EA-1D05-4D7F-8912-4396C17C978B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C65325EA-1D05-4D7F-8912-4396C17C978B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D24F3C59-17A1-4795-B4AC-9C2F5A6DCE11}
+	EndGlobalSection
+EndGlobal
