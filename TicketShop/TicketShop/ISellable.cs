@@ -8,6 +8,6 @@ namespace TicketShop
 {
     interface ISellable
     {
-        double Price { get; }
+        decimal Price { get; }
     }
 }

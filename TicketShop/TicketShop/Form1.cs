@@ -91,6 +91,7 @@ namespace TicketShop
                     eventx = new Performance(name, id, date, location, seats, artist, demands);
                 }
 
+                eventx.generateTickets(numeric_price.Value);
                 administration.AddEvent(eventx);
                 loadTab(0);
                 loadEvents();

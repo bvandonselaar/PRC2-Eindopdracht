@@ -31,6 +31,7 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl_administration = new System.Windows.Forms.TabControl();
             this.tabPage_events = new System.Windows.Forms.TabPage();
+            this.button_showTickets = new System.Windows.Forms.Button();
             this.button_deleteEvent = new System.Windows.Forms.Button();
             this.button_newEvent = new System.Windows.Forms.Button();
             this.button_load = new System.Windows.Forms.Button();
@@ -50,7 +51,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBox_eventArtist = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numeric_price = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.numeric_seats = new System.Windows.Forms.NumericUpDown();
@@ -63,15 +64,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_eventType = new System.Windows.Forms.ComboBox();
             this.tabPage_tickets = new System.Windows.Forms.TabPage();
-            this.listBox_tickets = new System.Windows.Forms.ListBox();
-            this.button_showTickets = new System.Windows.Forms.Button();
             this.button_ticketsBack = new System.Windows.Forms.Button();
+            this.listBox_tickets = new System.Windows.Forms.ListBox();
             this.tabControl_administration.SuspendLayout();
             this.tabPage_events.SuspendLayout();
             this.tabPage_event.SuspendLayout();
             this.groupBox_match.SuspendLayout();
             this.groupBox_performance.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_price)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_seats)).BeginInit();
             this.tabPage_tickets.SuspendLayout();
             this.SuspendLayout();
@@ -104,6 +104,16 @@
             this.tabPage_events.TabIndex = 0;
             this.tabPage_events.Text = "Events";
             this.tabPage_events.UseVisualStyleBackColor = true;
+            // 
+            // button_showTickets
+            // 
+            this.button_showTickets.Location = new System.Drawing.Point(351, 102);
+            this.button_showTickets.Name = "button_showTickets";
+            this.button_showTickets.Size = new System.Drawing.Size(121, 32);
+            this.button_showTickets.TabIndex = 6;
+            this.button_showTickets.Text = "Show Tickets";
+            this.button_showTickets.UseVisualStyleBackColor = true;
+            this.button_showTickets.Click += new System.EventHandler(this.button_showTickets_Click);
             // 
             // button_deleteEvent
             // 
@@ -168,7 +178,7 @@
             this.tabPage_event.Controls.Add(this.button_newEventBack);
             this.tabPage_event.Controls.Add(this.button_addNewEvent);
             this.tabPage_event.Controls.Add(this.groupBox_performance);
-            this.tabPage_event.Controls.Add(this.numericUpDown1);
+            this.tabPage_event.Controls.Add(this.numeric_price);
             this.tabPage_event.Controls.Add(this.label5);
             this.tabPage_event.Controls.Add(this.label4);
             this.tabPage_event.Controls.Add(this.numeric_seats);
@@ -298,18 +308,18 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Artist:";
             // 
-            // numericUpDown1
+            // numeric_price
             // 
-            this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Location = new System.Drawing.Point(98, 297);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numeric_price.DecimalPlaces = 2;
+            this.numeric_price.Location = new System.Drawing.Point(98, 297);
+            this.numeric_price.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 11;
+            this.numeric_price.Name = "numeric_price";
+            this.numeric_price.Size = new System.Drawing.Size(120, 20);
+            this.numeric_price.TabIndex = 11;
             // 
             // label5
             // 
@@ -425,25 +435,6 @@
             this.tabPage_tickets.Text = "Tickets";
             this.tabPage_tickets.UseVisualStyleBackColor = true;
             // 
-            // listBox_tickets
-            // 
-            this.listBox_tickets.FormattingEnabled = true;
-            this.listBox_tickets.HorizontalScrollbar = true;
-            this.listBox_tickets.Location = new System.Drawing.Point(6, 44);
-            this.listBox_tickets.Name = "listBox_tickets";
-            this.listBox_tickets.Size = new System.Drawing.Size(346, 472);
-            this.listBox_tickets.TabIndex = 0;
-            // 
-            // button_showTickets
-            // 
-            this.button_showTickets.Location = new System.Drawing.Point(351, 102);
-            this.button_showTickets.Name = "button_showTickets";
-            this.button_showTickets.Size = new System.Drawing.Size(121, 32);
-            this.button_showTickets.TabIndex = 6;
-            this.button_showTickets.Text = "Show Tickets";
-            this.button_showTickets.UseVisualStyleBackColor = true;
-            this.button_showTickets.Click += new System.EventHandler(this.button_showTickets_Click);
-            // 
             // button_ticketsBack
             // 
             this.button_ticketsBack.Location = new System.Drawing.Point(6, 6);
@@ -453,6 +444,15 @@
             this.button_ticketsBack.Text = "<- Back";
             this.button_ticketsBack.UseVisualStyleBackColor = true;
             this.button_ticketsBack.Click += new System.EventHandler(this.button_ticketsBack_Click);
+            // 
+            // listBox_tickets
+            // 
+            this.listBox_tickets.FormattingEnabled = true;
+            this.listBox_tickets.HorizontalScrollbar = true;
+            this.listBox_tickets.Location = new System.Drawing.Point(6, 44);
+            this.listBox_tickets.Name = "listBox_tickets";
+            this.listBox_tickets.Size = new System.Drawing.Size(346, 472);
+            this.listBox_tickets.TabIndex = 0;
             // 
             // ticketShopForm
             // 
@@ -470,7 +470,7 @@
             this.groupBox_match.PerformLayout();
             this.groupBox_performance.ResumeLayout(false);
             this.groupBox_performance.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_price)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_seats)).EndInit();
             this.tabPage_tickets.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -499,7 +499,7 @@
         private System.Windows.Forms.TextBox textBox_eventLocation;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numeric_seats;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numeric_price;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox_performance;
         private System.Windows.Forms.Button button_addNewEvent;

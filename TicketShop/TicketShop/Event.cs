@@ -24,11 +24,26 @@ namespace TicketShop
             Tickets = new List<Ticket>();
         }
 
-        public void generateTickets (double startingPrice)
+        public void generateTickets (decimal startingPrice)
         {
-            for (int i = 0; i < AvailableSeats; i++)
+            int classOne = (int)Decimal.Round((decimal)(AvailableSeats * 0.20));
+            int classTwo = (int)Decimal.Round((decimal)(AvailableSeats * 0.30));
+            int classThree = (int)Decimal.Round((decimal)(AvailableSeats * 0.50));
+
+            int index = 0;
+            for (; index < classOne; index++)
             {
-                Ticket ticket = new Ticket(i, 1, i, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
+                Ticket ticket = new Ticket(index, 1, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
+                Tickets.Add(ticket);
+            }
+            for (; index < (classTwo + classOne); index++)
+            {
+                Ticket ticket = new Ticket(index, 2, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
+                Tickets.Add(ticket);
+            }
+            for (; index < (classThree + classTwo + classOne); index++)
+            {
+                Ticket ticket = new Ticket(index, 3, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
                 Tickets.Add(ticket);
             }
         }
@@ -69,7 +84,7 @@ namespace TicketShop
             if (t == null) { return false; }
 
             int index = Tickets.IndexOf(t);
-            double startingPrice = Tickets[index].StartingPrice;
+            decimal startingPrice = Tickets[index].StartingPrice;
             Tickets[index] = new Ticket(ticketID, 0, index, new Buyer("none", new DateTime(0, 0, 0), "none"), startingPrice);
             return true;
         }
@@ -79,7 +94,7 @@ namespace TicketShop
             while(Tickets.Exists(x => x.Buyer.Name == buyerName))
             {
                 int index = Tickets.FindIndex(y => y.Buyer.Name == buyerName);
-                double startingPrice = Tickets[index].StartingPrice;
+                decimal startingPrice = Tickets[index].StartingPrice;
                 Tickets[index] = new Ticket(index, 0, index, new Buyer("none", new DateTime(0, 0, 0), "none"), startingPrice);
             }
             return true;
