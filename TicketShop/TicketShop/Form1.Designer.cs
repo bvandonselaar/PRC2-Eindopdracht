@@ -31,6 +31,7 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl_administration = new System.Windows.Forms.TabControl();
             this.tabPage_events = new System.Windows.Forms.TabPage();
+            this.label_eventInfo = new System.Windows.Forms.Label();
             this.button_showTickets = new System.Windows.Forms.Button();
             this.button_deleteEvent = new System.Windows.Forms.Button();
             this.button_newEvent = new System.Windows.Forms.Button();
@@ -64,8 +65,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_eventType = new System.Windows.Forms.ComboBox();
             this.tabPage_tickets = new System.Windows.Forms.TabPage();
+            this.button_orderTickets = new System.Windows.Forms.Button();
             this.button_ticketsBack = new System.Windows.Forms.Button();
             this.listBox_tickets = new System.Windows.Forms.ListBox();
+            this.tabPage_orderTickets = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numeric_amountTickets = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.comboBox_class = new System.Windows.Forms.ComboBox();
+            this.button_addOrderTickets = new System.Windows.Forms.Button();
+            this.textBox_buyerAddress = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dateTimePicker_buyerBirthday = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox_buyerName = new System.Windows.Forms.TextBox();
+            this.label_editTicket = new System.Windows.Forms.Label();
+            this.button_newTicketBack = new System.Windows.Forms.Button();
             this.tabControl_administration.SuspendLayout();
             this.tabPage_events.SuspendLayout();
             this.tabPage_event.SuspendLayout();
@@ -74,6 +90,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numeric_price)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_seats)).BeginInit();
             this.tabPage_tickets.SuspendLayout();
+            this.tabPage_orderTickets.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_amountTickets)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl_administration
@@ -81,6 +99,7 @@
             this.tabControl_administration.Controls.Add(this.tabPage_events);
             this.tabControl_administration.Controls.Add(this.tabPage_event);
             this.tabControl_administration.Controls.Add(this.tabPage_tickets);
+            this.tabControl_administration.Controls.Add(this.tabPage_orderTickets);
             this.tabControl_administration.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl_administration.Location = new System.Drawing.Point(12, 12);
             this.tabControl_administration.Name = "tabControl_administration";
@@ -90,6 +109,7 @@
             // 
             // tabPage_events
             // 
+            this.tabPage_events.Controls.Add(this.label_eventInfo);
             this.tabPage_events.Controls.Add(this.button_showTickets);
             this.tabPage_events.Controls.Add(this.button_deleteEvent);
             this.tabPage_events.Controls.Add(this.button_newEvent);
@@ -104,6 +124,14 @@
             this.tabPage_events.TabIndex = 0;
             this.tabPage_events.Text = "Events";
             this.tabPage_events.UseVisualStyleBackColor = true;
+            // 
+            // label_eventInfo
+            // 
+            this.label_eventInfo.AutoSize = true;
+            this.label_eventInfo.Location = new System.Drawing.Point(351, 162);
+            this.label_eventInfo.Name = "label_eventInfo";
+            this.label_eventInfo.Size = new System.Drawing.Size(0, 13);
+            this.label_eventInfo.TabIndex = 7;
             // 
             // button_showTickets
             // 
@@ -171,6 +199,7 @@
             this.listBox_events.Name = "listBox_events";
             this.listBox_events.Size = new System.Drawing.Size(338, 509);
             this.listBox_events.TabIndex = 0;
+            this.listBox_events.SelectedIndexChanged += new System.EventHandler(this.listBox_events_SelectedIndexChanged);
             // 
             // tabPage_event
             // 
@@ -425,6 +454,7 @@
             // 
             // tabPage_tickets
             // 
+            this.tabPage_tickets.Controls.Add(this.button_orderTickets);
             this.tabPage_tickets.Controls.Add(this.button_ticketsBack);
             this.tabPage_tickets.Controls.Add(this.listBox_tickets);
             this.tabPage_tickets.Location = new System.Drawing.Point(4, 22);
@@ -434,6 +464,16 @@
             this.tabPage_tickets.TabIndex = 2;
             this.tabPage_tickets.Text = "Tickets";
             this.tabPage_tickets.UseVisualStyleBackColor = true;
+            // 
+            // button_orderTickets
+            // 
+            this.button_orderTickets.Location = new System.Drawing.Point(358, 44);
+            this.button_orderTickets.Name = "button_orderTickets";
+            this.button_orderTickets.Size = new System.Drawing.Size(121, 32);
+            this.button_orderTickets.TabIndex = 16;
+            this.button_orderTickets.Text = "Order Tickets";
+            this.button_orderTickets.UseVisualStyleBackColor = true;
+            this.button_orderTickets.Click += new System.EventHandler(this.button_orderTickets_Click);
             // 
             // button_ticketsBack
             // 
@@ -453,6 +493,142 @@
             this.listBox_tickets.Name = "listBox_tickets";
             this.listBox_tickets.Size = new System.Drawing.Size(346, 472);
             this.listBox_tickets.TabIndex = 0;
+            this.listBox_tickets.SelectedIndexChanged += new System.EventHandler(this.listBox_tickets_SelectedIndexChanged);
+            // 
+            // tabPage_orderTickets
+            // 
+            this.tabPage_orderTickets.Controls.Add(this.label14);
+            this.tabPage_orderTickets.Controls.Add(this.numeric_amountTickets);
+            this.tabPage_orderTickets.Controls.Add(this.label13);
+            this.tabPage_orderTickets.Controls.Add(this.comboBox_class);
+            this.tabPage_orderTickets.Controls.Add(this.button_addOrderTickets);
+            this.tabPage_orderTickets.Controls.Add(this.textBox_buyerAddress);
+            this.tabPage_orderTickets.Controls.Add(this.label12);
+            this.tabPage_orderTickets.Controls.Add(this.dateTimePicker_buyerBirthday);
+            this.tabPage_orderTickets.Controls.Add(this.label11);
+            this.tabPage_orderTickets.Controls.Add(this.label10);
+            this.tabPage_orderTickets.Controls.Add(this.textBox_buyerName);
+            this.tabPage_orderTickets.Controls.Add(this.label_editTicket);
+            this.tabPage_orderTickets.Controls.Add(this.button_newTicketBack);
+            this.tabPage_orderTickets.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_orderTickets.Name = "tabPage_orderTickets";
+            this.tabPage_orderTickets.Size = new System.Drawing.Size(903, 526);
+            this.tabPage_orderTickets.TabIndex = 3;
+            this.tabPage_orderTickets.Text = "Order Tickets";
+            this.tabPage_orderTickets.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(43, 278);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(46, 13);
+            this.label14.TabIndex = 28;
+            this.label14.Text = "Amount:";
+            // 
+            // numeric_amountTickets
+            // 
+            this.numeric_amountTickets.Location = new System.Drawing.Point(95, 276);
+            this.numeric_amountTickets.Name = "numeric_amountTickets";
+            this.numeric_amountTickets.Size = new System.Drawing.Size(120, 20);
+            this.numeric_amountTickets.TabIndex = 27;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(53, 251);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "Class:";
+            // 
+            // comboBox_class
+            // 
+            this.comboBox_class.FormattingEnabled = true;
+            this.comboBox_class.Items.AddRange(new object[] {
+            "3",
+            "2",
+            "1"});
+            this.comboBox_class.Location = new System.Drawing.Point(94, 248);
+            this.comboBox_class.Name = "comboBox_class";
+            this.comboBox_class.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_class.TabIndex = 25;
+            // 
+            // button_addOrderTickets
+            // 
+            this.button_addOrderTickets.Location = new System.Drawing.Point(94, 334);
+            this.button_addOrderTickets.Name = "button_addOrderTickets";
+            this.button_addOrderTickets.Size = new System.Drawing.Size(131, 40);
+            this.button_addOrderTickets.TabIndex = 24;
+            this.button_addOrderTickets.Text = "Order Tickets";
+            this.button_addOrderTickets.UseVisualStyleBackColor = true;
+            this.button_addOrderTickets.Click += new System.EventHandler(this.button_addOrderTickets_Click);
+            // 
+            // textBox_buyerAddress
+            // 
+            this.textBox_buyerAddress.Location = new System.Drawing.Point(95, 201);
+            this.textBox_buyerAddress.Name = "textBox_buyerAddress";
+            this.textBox_buyerAddress.Size = new System.Drawing.Size(100, 20);
+            this.textBox_buyerAddress.TabIndex = 23;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(40, 204);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(48, 13);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Address:";
+            // 
+            // dateTimePicker_buyerBirthday
+            // 
+            this.dateTimePicker_buyerBirthday.Location = new System.Drawing.Point(95, 165);
+            this.dateTimePicker_buyerBirthday.Name = "dateTimePicker_buyerBirthday";
+            this.dateTimePicker_buyerBirthday.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker_buyerBirthday.TabIndex = 21;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(40, 171);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 13);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Birthday:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 131);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(63, 13);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "Buyername:";
+            // 
+            // textBox_buyerName
+            // 
+            this.textBox_buyerName.Location = new System.Drawing.Point(94, 128);
+            this.textBox_buyerName.Name = "textBox_buyerName";
+            this.textBox_buyerName.Size = new System.Drawing.Size(100, 20);
+            this.textBox_buyerName.TabIndex = 18;
+            // 
+            // label_editTicket
+            // 
+            this.label_editTicket.AutoSize = true;
+            this.label_editTicket.Location = new System.Drawing.Point(3, 48);
+            this.label_editTicket.Name = "label_editTicket";
+            this.label_editTicket.Size = new System.Drawing.Size(0, 13);
+            this.label_editTicket.TabIndex = 17;
+            // 
+            // button_newTicketBack
+            // 
+            this.button_newTicketBack.Location = new System.Drawing.Point(3, 4);
+            this.button_newTicketBack.Name = "button_newTicketBack";
+            this.button_newTicketBack.Size = new System.Drawing.Size(97, 32);
+            this.button_newTicketBack.TabIndex = 16;
+            this.button_newTicketBack.Text = "<- Back";
+            this.button_newTicketBack.UseVisualStyleBackColor = true;
+            this.button_newTicketBack.Click += new System.EventHandler(this.button_newTicketBack_Click);
             // 
             // ticketShopForm
             // 
@@ -464,6 +640,7 @@
             this.Text = "TicketShop";
             this.tabControl_administration.ResumeLayout(false);
             this.tabPage_events.ResumeLayout(false);
+            this.tabPage_events.PerformLayout();
             this.tabPage_event.ResumeLayout(false);
             this.tabPage_event.PerformLayout();
             this.groupBox_match.ResumeLayout(false);
@@ -473,6 +650,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numeric_price)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_seats)).EndInit();
             this.tabPage_tickets.ResumeLayout(false);
+            this.tabPage_orderTickets.ResumeLayout(false);
+            this.tabPage_orderTickets.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_amountTickets)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -517,6 +697,22 @@
         private System.Windows.Forms.ListBox listBox_tickets;
         private System.Windows.Forms.Button button_showTickets;
         private System.Windows.Forms.Button button_ticketsBack;
+        private System.Windows.Forms.Button button_orderTickets;
+        private System.Windows.Forms.TabPage tabPage_orderTickets;
+        private System.Windows.Forms.Button button_newTicketBack;
+        private System.Windows.Forms.Label label_eventInfo;
+        private System.Windows.Forms.Label label_editTicket;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox_buyerName;
+        private System.Windows.Forms.Button button_addOrderTickets;
+        private System.Windows.Forms.TextBox textBox_buyerAddress;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_buyerBirthday;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown numeric_amountTickets;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox comboBox_class;
     }
 }
 

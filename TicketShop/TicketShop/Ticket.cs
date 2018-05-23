@@ -35,7 +35,7 @@ namespace TicketShop
         public override string ToString()
         {
             decimal returnPrice = Decimal.Round(Price, 2); 
-            return Id
+            return "Id: " + Id
             + ", " + Class
             + ", " + Seat
             + ", " + Buyer

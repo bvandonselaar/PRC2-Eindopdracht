@@ -30,6 +30,12 @@ namespace TicketShop
             int classTwo = (int)Decimal.Round((decimal)(AvailableSeats * 0.30));
             int classThree = (int)Decimal.Round((decimal)(AvailableSeats * 0.50));
 
+            /* OPLOSSING 1 (delete wat hier boven staat natuurlijk)
+            int classOne = (int)Decimal.Round((decimal)(AvailableSeats * 0.20 + 0.5));
+            int classTwo = (int)Decimal.Round((decimal)(AvailableSeats * 0.30 + 0.5));
+            int classThree = (int)Decimal.Round((decimal)(AvailableSeats * 0.50 + 0.5));
+            */
+
             int index = 0;
             for (; index < classOne; index++)
             {
@@ -46,6 +52,14 @@ namespace TicketShop
                 Ticket ticket = new Ticket(index, 3, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
                 Tickets.Add(ticket);
             }
+
+            /* OPLOSSING 2
+            while(Tickets.Count < AvailableSeats)
+            {
+                Ticket ticket = new Ticket(index, 3, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
+                Tickets.Add(ticket);
+            }
+            */
         }
 
         public bool orderTickets(int amount, int chairClass, Buyer buyer)
@@ -107,6 +121,11 @@ namespace TicketShop
                 if (t.Id == id) { return t; }
             }
             return null;
+        }
+
+        public int indexOf(int id)
+        {
+            return Tickets.IndexOf(findTicket(id));
         }
 
         public Buyer findBuyer(string name)

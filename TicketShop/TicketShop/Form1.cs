@@ -14,6 +14,9 @@ namespace TicketShop
     {
         Administration administration;
         List<TabPage> tabs;
+        int selectedEventIndex = -1;
+        int selectedTicketIndex = -1;
+
         public ticketShopForm()
         {
             InitializeComponent();
@@ -152,27 +155,31 @@ namespace TicketShop
 
         private void button_deleteEvent_Click(object sender, EventArgs e)
         {
-            if (listBox_events.SelectedItem != null)
+            if (selectedEventIndex != -1)
             {
-                administration.DeleteEvent(getEventId());
+                administration.DeleteEvent(selectedEventIndex);
                 loadEvents();
             }
             else { MessageBox.Show("Select Event"); }
         }
 
-        private int getEventId()
+        private int getIdFromListBoxItem(ListBox data)
         {
-            string[] parts = listBox_events.SelectedItem.ToString().Split(':')[1].Split(',');
-            return Convert.ToInt32(parts[0]);
+            if (data.SelectedItem != null)
+            {
+                string part = data.SelectedItem.ToString().Split(':')[1].Split(',')[0];
+                return Convert.ToInt32(part);
+            }
+            else { return -1; }
         }
 
         private void button_showTickets_Click(object sender, EventArgs e)
         {
-            if (listBox_events.SelectedItem != null)
+            
+            if (selectedEventIndex != -1)
             {
-                int eventIndex = administration.indexOf(getEventId());
                 loadTab(2);
-                loadTickets(eventIndex);
+                loadTickets(selectedEventIndex);
             }
             else { MessageBox.Show("Select Event"); }
         }
@@ -180,6 +187,64 @@ namespace TicketShop
         private void button_ticketsBack_Click(object sender, EventArgs e)
         {
             loadTab(0);
+            loadEvents();
+        }
+
+        private void button_newTicketBack_Click(object sender, EventArgs e)
+        {
+            loadTab(2);
+            loadTickets(selectedEventIndex);
+        }
+
+        private void listBox_events_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = getIdFromListBoxItem(listBox_events);
+            if(id != -1)
+            {
+                selectedEventIndex = administration.indexOf(id);
+                label_eventInfo.Text = administration.Events[selectedEventIndex].ToString();
+            }
+            else
+            {
+                selectedEventIndex = -1;
+            }
+            
+        }
+
+        private void listBox_tickets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = getIdFromListBoxItem(listBox_tickets);
+            if (id != -1)
+            {
+                selectedTicketIndex = administration.Events[selectedEventIndex].indexOf(id);
+            }
+            else
+            {
+                selectedEventIndex = -1;
+            }
+        }
+
+        private void button_orderTickets_Click(object sender, EventArgs e)
+        {
+
+            loadTab(3);
+            comboBox_class.SelectedIndex = 0;
+        }
+
+        private void button_addOrderTickets_Click(object sender, EventArgs e)
+        {
+            Buyer b = new Buyer(textBox_buyerName.Text, dateTimePicker_buyerBirthday.Value, textBox_buyerAddress.Text);
+            int amount = (int)numeric_amountTickets.Value;
+            int chairClass = Convert.ToInt32(comboBox_class.SelectedItem.ToString().Trim());
+
+            if (administration.Events[selectedEventIndex].orderTickets(amount, chairClass, b))
+            {
+                loadTab(2);
+                loadTickets(selectedEventIndex);
+            }
+            else { MessageBox.Show("Not enough tickets in that class for your order."); }
+
+            
         }
     }
 }
