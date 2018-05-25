@@ -17,6 +17,8 @@ namespace TicketShop
         int selectedEventIndex = -1;
         int selectedTicketIndex = -1;
 
+        enum Tab : byte { Events, addNewEvent, Tickets, orderTickets };
+
         public ticketShopForm()
         {
             InitializeComponent();
@@ -59,15 +61,15 @@ namespace TicketShop
             }
         }
 
-        private void loadTab(int tabIndex)
+        private void loadTab(Tab tabIndex)
         {
-            tabControl_administration.TabPages.Add(tabs[tabIndex]);
+            tabControl_administration.TabPages.Add(tabs[(int)tabIndex]);
             tabControl_administration.TabPages.Remove(tabControl_administration.TabPages[0]);
         }
 
         private void button_newEvent_Click(object sender, EventArgs e)
         {
-            loadTab(1);
+            loadTab(Tab.addNewEvent);
             comboBox_eventType.SelectedIndex = 0;
         }
 
@@ -96,7 +98,7 @@ namespace TicketShop
 
                 eventx.generateTickets(numeric_price.Value);
                 administration.AddEvent(eventx);
-                loadTab(0);
+                loadTab(Tab.Events);
                 loadEvents();
             }
             else
@@ -135,7 +137,7 @@ namespace TicketShop
 
         private void button_newEventBack_Click(object sender, EventArgs e)
         {
-            loadTab(0);
+            loadTab(Tab.Events);
             loadEvents();
         }
 
@@ -178,7 +180,7 @@ namespace TicketShop
             
             if (selectedEventIndex != -1)
             {
-                loadTab(2);
+                loadTab(Tab.Tickets);
                 loadTickets(selectedEventIndex);
             }
             else { MessageBox.Show("Select Event"); }
@@ -186,13 +188,13 @@ namespace TicketShop
 
         private void button_ticketsBack_Click(object sender, EventArgs e)
         {
-            loadTab(0);
+            loadTab(Tab.Events);
             loadEvents();
         }
 
         private void button_newTicketBack_Click(object sender, EventArgs e)
         {
-            loadTab(2);
+            loadTab(Tab.Tickets);
             loadTickets(selectedEventIndex);
         }
 
@@ -227,7 +229,7 @@ namespace TicketShop
         private void button_orderTickets_Click(object sender, EventArgs e)
         {
 
-            loadTab(3);
+            loadTab(Tab.orderTickets);
             comboBox_class.SelectedIndex = 0;
         }
 
@@ -239,12 +241,13 @@ namespace TicketShop
 
             if (administration.Events[selectedEventIndex].orderTickets(amount, chairClass, b))
             {
-                loadTab(2);
+                loadTab(Tab.Tickets);
                 loadTickets(selectedEventIndex);
             }
             else { MessageBox.Show("Not enough tickets in that class for your order."); }
 
             
         }
+
     }
 }
