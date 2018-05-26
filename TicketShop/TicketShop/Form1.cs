@@ -96,7 +96,7 @@ namespace TicketShop
                     eventx = new Performance(name, id, date, location, seats, artist, demands);
                 }
 
-                eventx.generateTickets(numeric_price.Value);
+                eventx.GenerateTickets(numeric_price.Value);
                 administration.AddEvent(eventx);
                 loadTab(Tab.Events);
                 loadEvents();
@@ -203,7 +203,7 @@ namespace TicketShop
             int id = getIdFromListBoxItem(listBox_events);
             if(id != -1)
             {
-                selectedEventIndex = administration.indexOf(id);
+                selectedEventIndex = administration.IndexOf(id);
                 label_eventInfo.Text = administration.Events[selectedEventIndex].ToString();
             }
             else
@@ -218,7 +218,7 @@ namespace TicketShop
             int id = getIdFromListBoxItem(listBox_tickets);
             if (id != -1)
             {
-                selectedTicketIndex = administration.Events[selectedEventIndex].indexOf(id);
+                selectedTicketIndex = administration.Events[selectedEventIndex].IndexOf(id);
             }
             else
             {
@@ -239,7 +239,7 @@ namespace TicketShop
             int amount = (int)numeric_amountTickets.Value;
             int chairClass = Convert.ToInt32(comboBox_class.SelectedItem.ToString().Trim());
 
-            if (administration.Events[selectedEventIndex].orderTickets(amount, chairClass, b))
+            if (administration.Events[selectedEventIndex].OrderTickets(amount, chairClass, b))
             {
                 loadTab(Tab.Tickets);
                 loadTickets(selectedEventIndex);
@@ -249,5 +249,16 @@ namespace TicketShop
             
         }
 
+        private void button_sortEventName_Click(object sender, EventArgs e)
+        {
+            if (comboBox_order.SelectedItem != null)
+            {
+                administration.Sort(comboBox_order.SelectedItem.ToString(), null);
+                loadEvents();
+            }
+            else { MessageBox.Show("No Order Selected"); }
+            
+
+        }
     }
 }

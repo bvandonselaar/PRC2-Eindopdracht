@@ -24,7 +24,22 @@ namespace TicketShop
             Tickets = new List<Ticket>();
         }
 
-        public void generateTickets (decimal startingPrice)
+        public class SortEventsByNameDescending : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return string.Compare(y.Name, x.Name);
+            }
+        }
+        public class SortEventsByNameAscending : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return string.Compare(x.Name, y.Name);
+            }
+        }
+
+        public void GenerateTickets (decimal startingPrice)
         {
             int classOne = (int)Decimal.Round((decimal)(AvailableSeats * 0.20));
             int classTwo = (int)Decimal.Round((decimal)(AvailableSeats * 0.30));
@@ -62,7 +77,7 @@ namespace TicketShop
             */
         }
 
-        public bool orderTickets(int amount, int chairClass, Buyer buyer)
+        public bool OrderTickets(int amount, int chairClass, Buyer buyer)
         {
             List<int> ticketsIndexes = new List<int>();
 
@@ -94,7 +109,7 @@ namespace TicketShop
 
         public bool DeleteTickets(int ticketID)
         {
-            Ticket t = findTicket(ticketID);
+            Ticket t = FindTicket(ticketID);
             if (t == null) { return false; }
 
             int index = Tickets.IndexOf(t);
@@ -114,7 +129,7 @@ namespace TicketShop
             return true;
         }
 
-        public Ticket findTicket(int id)
+        public Ticket FindTicket(int id)
         {
             foreach (Ticket t in Tickets)
             {
@@ -123,12 +138,12 @@ namespace TicketShop
             return null;
         }
 
-        public int indexOf(int id)
+        public int IndexOf(int id)
         {
-            return Tickets.IndexOf(findTicket(id));
+            return Tickets.IndexOf(FindTicket(id));
         }
 
-        public Buyer findBuyer(string name)
+        public Buyer FindBuyer(string name)
         {
             foreach (Buyer b in Buyers)
             {

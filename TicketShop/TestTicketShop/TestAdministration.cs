@@ -74,7 +74,7 @@ namespace TestTicketShop
             Event e1 = new Performance(name, id, date, location, availableSeats, artist, demands);
             a.AddEvent(e1);
 
-            Assert.AreEqual(e1, a.findEvent(id));
+            Assert.AreEqual(e1, a.FindEvent(id));
         }
         [TestMethod]
         public void TestAdminFindEventNotFound()
@@ -82,7 +82,7 @@ namespace TestTicketShop
             Event e1 = new Performance(name, id, date, location, availableSeats, artist, demands);
             a.AddEvent(e1);
 
-            Assert.AreEqual(null, a.findEvent(30));
+            Assert.AreEqual(null, a.FindEvent(30));
         }
     }
 }

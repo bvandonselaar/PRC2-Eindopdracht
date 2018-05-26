@@ -82,6 +82,11 @@
             this.textBox_buyerName = new System.Windows.Forms.TextBox();
             this.label_editTicket = new System.Windows.Forms.Label();
             this.button_newTicketBack = new System.Windows.Forms.Button();
+            this.button_sortEventName = new System.Windows.Forms.Button();
+            this.comboBox_sortBy = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.comboBox_order = new System.Windows.Forms.ComboBox();
             this.tabControl_administration.SuspendLayout();
             this.tabPage_events.SuspendLayout();
             this.tabPage_event.SuspendLayout();
@@ -96,6 +101,9 @@
             // 
             // tabControl_administration
             // 
+            this.tabControl_administration.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl_administration.Controls.Add(this.tabPage_events);
             this.tabControl_administration.Controls.Add(this.tabPage_event);
             this.tabControl_administration.Controls.Add(this.tabPage_tickets);
@@ -109,6 +117,11 @@
             // 
             // tabPage_events
             // 
+            this.tabPage_events.Controls.Add(this.comboBox_order);
+            this.tabPage_events.Controls.Add(this.label16);
+            this.tabPage_events.Controls.Add(this.label15);
+            this.tabPage_events.Controls.Add(this.comboBox_sortBy);
+            this.tabPage_events.Controls.Add(this.button_sortEventName);
             this.tabPage_events.Controls.Add(this.label_eventInfo);
             this.tabPage_events.Controls.Add(this.button_showTickets);
             this.tabPage_events.Controls.Add(this.button_deleteEvent);
@@ -128,14 +141,14 @@
             // label_eventInfo
             // 
             this.label_eventInfo.AutoSize = true;
-            this.label_eventInfo.Location = new System.Drawing.Point(351, 162);
+            this.label_eventInfo.Location = new System.Drawing.Point(27, 46);
             this.label_eventInfo.Name = "label_eventInfo";
             this.label_eventInfo.Size = new System.Drawing.Size(0, 13);
             this.label_eventInfo.TabIndex = 7;
             // 
             // button_showTickets
             // 
-            this.button_showTickets.Location = new System.Drawing.Point(351, 102);
+            this.button_showTickets.Location = new System.Drawing.Point(776, 124);
             this.button_showTickets.Name = "button_showTickets";
             this.button_showTickets.Size = new System.Drawing.Size(121, 32);
             this.button_showTickets.TabIndex = 6;
@@ -145,7 +158,7 @@
             // 
             // button_deleteEvent
             // 
-            this.button_deleteEvent.Location = new System.Drawing.Point(350, 54);
+            this.button_deleteEvent.Location = new System.Drawing.Point(133, 7);
             this.button_deleteEvent.Name = "button_deleteEvent";
             this.button_deleteEvent.Size = new System.Drawing.Size(121, 32);
             this.button_deleteEvent.TabIndex = 5;
@@ -155,7 +168,7 @@
             // 
             // button_newEvent
             // 
-            this.button_newEvent.Location = new System.Drawing.Point(351, 7);
+            this.button_newEvent.Location = new System.Drawing.Point(6, 7);
             this.button_newEvent.Name = "button_newEvent";
             this.button_newEvent.Size = new System.Drawing.Size(121, 32);
             this.button_newEvent.TabIndex = 4;
@@ -165,7 +178,7 @@
             // 
             // button_load
             // 
-            this.button_load.Location = new System.Drawing.Point(822, 436);
+            this.button_load.Location = new System.Drawing.Point(822, 7);
             this.button_load.Name = "button_load";
             this.button_load.Size = new System.Drawing.Size(75, 23);
             this.button_load.TabIndex = 3;
@@ -174,7 +187,7 @@
             // 
             // button_export
             // 
-            this.button_export.Location = new System.Drawing.Point(822, 494);
+            this.button_export.Location = new System.Drawing.Point(822, 65);
             this.button_export.Name = "button_export";
             this.button_export.Size = new System.Drawing.Size(75, 23);
             this.button_export.TabIndex = 2;
@@ -183,7 +196,7 @@
             // 
             // button_save
             // 
-            this.button_save.Location = new System.Drawing.Point(822, 465);
+            this.button_save.Location = new System.Drawing.Point(822, 36);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(75, 23);
             this.button_save.TabIndex = 1;
@@ -195,9 +208,9 @@
             this.listBox_events.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBox_events.FormattingEnabled = true;
             this.listBox_events.HorizontalScrollbar = true;
-            this.listBox_events.Location = new System.Drawing.Point(6, 6);
+            this.listBox_events.Location = new System.Drawing.Point(6, 162);
             this.listBox_events.Name = "listBox_events";
-            this.listBox_events.Size = new System.Drawing.Size(338, 509);
+            this.listBox_events.Size = new System.Drawing.Size(891, 353);
             this.listBox_events.TabIndex = 0;
             this.listBox_events.SelectedIndexChanged += new System.EventHandler(this.listBox_events_SelectedIndexChanged);
             // 
@@ -233,7 +246,7 @@
             this.groupBox_match.Controls.Add(this.label8);
             this.groupBox_match.Controls.Add(this.textBox_player);
             this.groupBox_match.Controls.Add(this.label9);
-            this.groupBox_match.Location = new System.Drawing.Point(338, 117);
+            this.groupBox_match.Location = new System.Drawing.Point(467, 101);
             this.groupBox_match.Name = "groupBox_match";
             this.groupBox_match.Size = new System.Drawing.Size(229, 118);
             this.groupBox_match.TabIndex = 13;
@@ -284,7 +297,7 @@
             // 
             // button_addNewEvent
             // 
-            this.button_addNewEvent.Location = new System.Drawing.Point(81, 343);
+            this.button_addNewEvent.Location = new System.Drawing.Point(351, 366);
             this.button_addNewEvent.Name = "button_addNewEvent";
             this.button_addNewEvent.Size = new System.Drawing.Size(202, 37);
             this.button_addNewEvent.TabIndex = 13;
@@ -298,7 +311,7 @@
             this.groupBox_performance.Controls.Add(this.label7);
             this.groupBox_performance.Controls.Add(this.textBox_eventArtist);
             this.groupBox_performance.Controls.Add(this.label6);
-            this.groupBox_performance.Location = new System.Drawing.Point(338, 117);
+            this.groupBox_performance.Location = new System.Drawing.Point(467, 101);
             this.groupBox_performance.Name = "groupBox_performance";
             this.groupBox_performance.Size = new System.Drawing.Size(229, 118);
             this.groupBox_performance.TabIndex = 12;
@@ -340,7 +353,7 @@
             // numeric_price
             // 
             this.numeric_price.DecimalPlaces = 2;
-            this.numeric_price.Location = new System.Drawing.Point(98, 297);
+            this.numeric_price.Location = new System.Drawing.Point(301, 318);
             this.numeric_price.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -353,7 +366,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(57, 299);
+            this.label5.Location = new System.Drawing.Point(260, 320);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 13);
             this.label5.TabIndex = 10;
@@ -362,7 +375,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(54, 269);
+            this.label4.Location = new System.Drawing.Point(257, 290);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 9;
@@ -370,7 +383,7 @@
             // 
             // numeric_seats
             // 
-            this.numeric_seats.Location = new System.Drawing.Point(98, 267);
+            this.numeric_seats.Location = new System.Drawing.Point(301, 288);
             this.numeric_seats.Maximum = new decimal(new int[] {
             80000,
             0,
@@ -383,7 +396,7 @@
             // l
             // 
             this.l.AutoSize = true;
-            this.l.Location = new System.Drawing.Point(41, 229);
+            this.l.Location = new System.Drawing.Point(244, 250);
             this.l.Name = "l";
             this.l.Size = new System.Drawing.Size(51, 13);
             this.l.TabIndex = 7;
@@ -391,7 +404,7 @@
             // 
             // textBox_eventLocation
             // 
-            this.textBox_eventLocation.Location = new System.Drawing.Point(98, 226);
+            this.textBox_eventLocation.Location = new System.Drawing.Point(301, 247);
             this.textBox_eventLocation.Name = "textBox_eventLocation";
             this.textBox_eventLocation.Size = new System.Drawing.Size(100, 20);
             this.textBox_eventLocation.TabIndex = 6;
@@ -399,7 +412,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(54, 195);
+            this.label3.Location = new System.Drawing.Point(257, 216);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 5;
@@ -409,7 +422,7 @@
             // 
             this.dateTimePicker_date.CustomFormat = "H:m      dd-MM-yyyy";
             this.dateTimePicker_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_date.Location = new System.Drawing.Point(98, 189);
+            this.dateTimePicker_date.Location = new System.Drawing.Point(301, 210);
             this.dateTimePicker_date.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_date.Name = "dateTimePicker_date";
             this.dateTimePicker_date.Size = new System.Drawing.Size(144, 20);
@@ -417,7 +430,7 @@
             // 
             // textBox_eventName
             // 
-            this.textBox_eventName.Location = new System.Drawing.Point(98, 150);
+            this.textBox_eventName.Location = new System.Drawing.Point(301, 171);
             this.textBox_eventName.Name = "textBox_eventName";
             this.textBox_eventName.Size = new System.Drawing.Size(100, 20);
             this.textBox_eventName.TabIndex = 3;
@@ -425,7 +438,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 153);
+            this.label2.Location = new System.Drawing.Point(257, 174);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 2;
@@ -434,7 +447,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 90);
+            this.label1.Location = new System.Drawing.Point(233, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 1;
@@ -446,7 +459,7 @@
             this.comboBox_eventType.Items.AddRange(new object[] {
             "Performance",
             "Match"});
-            this.comboBox_eventType.Location = new System.Drawing.Point(97, 87);
+            this.comboBox_eventType.Location = new System.Drawing.Point(300, 108);
             this.comboBox_eventType.Name = "comboBox_eventType";
             this.comboBox_eventType.Size = new System.Drawing.Size(121, 21);
             this.comboBox_eventType.TabIndex = 0;
@@ -520,7 +533,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(43, 278);
+            this.label14.Location = new System.Drawing.Point(325, 283);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(46, 13);
             this.label14.TabIndex = 28;
@@ -528,7 +541,7 @@
             // 
             // numeric_amountTickets
             // 
-            this.numeric_amountTickets.Location = new System.Drawing.Point(95, 276);
+            this.numeric_amountTickets.Location = new System.Drawing.Point(377, 281);
             this.numeric_amountTickets.Name = "numeric_amountTickets";
             this.numeric_amountTickets.Size = new System.Drawing.Size(120, 20);
             this.numeric_amountTickets.TabIndex = 27;
@@ -536,7 +549,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(53, 251);
+            this.label13.Location = new System.Drawing.Point(335, 256);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(35, 13);
             this.label13.TabIndex = 26;
@@ -549,14 +562,14 @@
             "3",
             "2",
             "1"});
-            this.comboBox_class.Location = new System.Drawing.Point(94, 248);
+            this.comboBox_class.Location = new System.Drawing.Point(376, 253);
             this.comboBox_class.Name = "comboBox_class";
             this.comboBox_class.Size = new System.Drawing.Size(121, 21);
             this.comboBox_class.TabIndex = 25;
             // 
             // button_addOrderTickets
             // 
-            this.button_addOrderTickets.Location = new System.Drawing.Point(94, 334);
+            this.button_addOrderTickets.Location = new System.Drawing.Point(376, 339);
             this.button_addOrderTickets.Name = "button_addOrderTickets";
             this.button_addOrderTickets.Size = new System.Drawing.Size(131, 40);
             this.button_addOrderTickets.TabIndex = 24;
@@ -566,7 +579,7 @@
             // 
             // textBox_buyerAddress
             // 
-            this.textBox_buyerAddress.Location = new System.Drawing.Point(95, 201);
+            this.textBox_buyerAddress.Location = new System.Drawing.Point(377, 206);
             this.textBox_buyerAddress.Name = "textBox_buyerAddress";
             this.textBox_buyerAddress.Size = new System.Drawing.Size(100, 20);
             this.textBox_buyerAddress.TabIndex = 23;
@@ -574,7 +587,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(40, 204);
+            this.label12.Location = new System.Drawing.Point(322, 209);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(48, 13);
             this.label12.TabIndex = 22;
@@ -582,7 +595,7 @@
             // 
             // dateTimePicker_buyerBirthday
             // 
-            this.dateTimePicker_buyerBirthday.Location = new System.Drawing.Point(95, 165);
+            this.dateTimePicker_buyerBirthday.Location = new System.Drawing.Point(377, 170);
             this.dateTimePicker_buyerBirthday.Name = "dateTimePicker_buyerBirthday";
             this.dateTimePicker_buyerBirthday.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker_buyerBirthday.TabIndex = 21;
@@ -590,7 +603,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(40, 171);
+            this.label11.Location = new System.Drawing.Point(322, 176);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 13);
             this.label11.TabIndex = 20;
@@ -599,7 +612,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 131);
+            this.label10.Location = new System.Drawing.Point(307, 136);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(63, 13);
             this.label10.TabIndex = 19;
@@ -607,7 +620,7 @@
             // 
             // textBox_buyerName
             // 
-            this.textBox_buyerName.Location = new System.Drawing.Point(94, 128);
+            this.textBox_buyerName.Location = new System.Drawing.Point(376, 133);
             this.textBox_buyerName.Name = "textBox_buyerName";
             this.textBox_buyerName.Size = new System.Drawing.Size(100, 20);
             this.textBox_buyerName.TabIndex = 18;
@@ -622,13 +635,60 @@
             // 
             // button_newTicketBack
             // 
-            this.button_newTicketBack.Location = new System.Drawing.Point(3, 4);
+            this.button_newTicketBack.Location = new System.Drawing.Point(6, 6);
             this.button_newTicketBack.Name = "button_newTicketBack";
             this.button_newTicketBack.Size = new System.Drawing.Size(97, 32);
             this.button_newTicketBack.TabIndex = 16;
             this.button_newTicketBack.Text = "<- Back";
             this.button_newTicketBack.UseVisualStyleBackColor = true;
             this.button_newTicketBack.Click += new System.EventHandler(this.button_newTicketBack_Click);
+            // 
+            // button_sortEventName
+            // 
+            this.button_sortEventName.Location = new System.Drawing.Point(361, 136);
+            this.button_sortEventName.Name = "button_sortEventName";
+            this.button_sortEventName.Size = new System.Drawing.Size(75, 23);
+            this.button_sortEventName.TabIndex = 8;
+            this.button_sortEventName.Text = "Sort";
+            this.button_sortEventName.UseVisualStyleBackColor = true;
+            this.button_sortEventName.Click += new System.EventHandler(this.button_sortEventName_Click);
+            // 
+            // comboBox_sortBy
+            // 
+            this.comboBox_sortBy.FormattingEnabled = true;
+            this.comboBox_sortBy.Location = new System.Drawing.Point(52, 138);
+            this.comboBox_sortBy.Name = "comboBox_sortBy";
+            this.comboBox_sortBy.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_sortBy.TabIndex = 9;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 141);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(43, 13);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Sort by:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(183, 141);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(36, 13);
+            this.label16.TabIndex = 11;
+            this.label16.Text = "Order:";
+            // 
+            // comboBox_order
+            // 
+            this.comboBox_order.FormattingEnabled = true;
+            this.comboBox_order.Items.AddRange(new object[] {
+            "Ascending",
+            "Descending"});
+            this.comboBox_order.Location = new System.Drawing.Point(225, 138);
+            this.comboBox_order.Name = "comboBox_order";
+            this.comboBox_order.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_order.TabIndex = 12;
             // 
             // ticketShopForm
             // 
@@ -713,6 +773,11 @@
         private System.Windows.Forms.NumericUpDown numeric_amountTickets;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comboBox_class;
+        private System.Windows.Forms.Button button_sortEventName;
+        private System.Windows.Forms.ComboBox comboBox_order;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBox_sortBy;
     }
 }
 

@@ -19,6 +19,15 @@ namespace TicketShop
             Events = new List<Event>();
         }
 
+        public void Sort(string order, string mode)
+        {
+            IComparer<Event> compareEvents;
+            if (order == "Ascending") { compareEvents = new Event.SortEventsByNameAscending(); }
+            else { compareEvents = new Event.SortEventsByNameDescending(); }
+
+            Events.Sort(compareEvents);
+        }
+
         public bool AddEvent(Event eventx)
         {
             if (eventx == null) { return false; }
@@ -29,14 +38,14 @@ namespace TicketShop
 
         public bool DeleteEvent(int id)
         {
-            Event e = findEvent(id);
+            Event e = FindEvent(id);
             if (e == null) { return false; }
 
             Events.Remove(e);
             return true;
         }
 
-        public Event findEvent(int id)
+        public Event FindEvent(int id)
         {
             foreach (Event e in Events)
             {
@@ -45,9 +54,9 @@ namespace TicketShop
             return null;
         }
 
-        public int indexOf(int id)
+        public int IndexOf(int id)
         {
-            return Events.IndexOf(findEvent(id));
+            return Events.IndexOf(FindEvent(id));
         }
 
         public void Save(string filename)
