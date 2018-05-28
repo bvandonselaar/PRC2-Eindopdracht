@@ -14,7 +14,7 @@ namespace TestTicketShop
         DateTime date;
         string location;
         int availableSeats;
-        int Price;
+
         [TestInitialize]
         public void TestInitialize()
         {
@@ -25,7 +25,6 @@ namespace TestTicketShop
             date = new DateTime(2018, 9, 12);
             location = "HomeStreet 1";
             availableSeats = 15000;
-            Price = 0;
         }
         [TestMethod]
         public void TestMatchConstructor()
@@ -45,7 +44,7 @@ namespace TestTicketShop
         public void TestMatchToString()
         {
             Match m = new Match(name, id, date, location, availableSeats, player, opponent);
-            string expected = ("Match: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price + ", " + player + ", " + opponent);
+            string expected = ("Match: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats +  ", " + player + ", " + opponent);
             Assert.AreEqual(expected, m.ToString());
         }
     }

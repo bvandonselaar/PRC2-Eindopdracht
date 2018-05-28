@@ -14,16 +14,18 @@ namespace TestTicketShop
         DateTime Birth;
         string Address;
         decimal startingPrice;
+        int clas2;
         [TestInitialize]
         public void TestInitialize()
         {
             id = 10;
-            clas = 2;
+            clas = 1;
             seat = 10;
             name = "J. Johansson";
             Birth = new DateTime(2018, 9, 12);
             Address = "HomeStreet 1";
             startingPrice = 100;
+            clas2 = 2;
         }
         [TestMethod]
         public void TestTicketConstructor()
@@ -41,11 +43,15 @@ namespace TestTicketShop
         }
         [TestMethod]
         public void TestTicketToString()
-        {
+        { 
             Buyer buyer = new Buyer(name, Birth, Address);
             Ticket t = new Ticket(id, clas, seat, buyer, startingPrice);
-            string expected = (id + ", " + clas + ", " + seat + ", " + buyer);
+            string expected = ("Id: "+ id + ", " + clas + ", " + seat + ", " + buyer + ", €" + startingPrice);
+            Ticket t2 = new Ticket(id, clas2, seat, buyer, startingPrice);
+            string expected2 = ("Id: " + id + ", " + clas2 + ", " + seat + ", " + buyer + ", €" + 50.0);
             Assert.AreEqual(expected, t.ToString());
+            Assert.AreEqual(expected2, t2.ToString());
+            
         }
     }
 }

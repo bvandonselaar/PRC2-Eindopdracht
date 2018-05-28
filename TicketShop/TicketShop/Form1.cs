@@ -278,7 +278,7 @@ namespace TicketShop
                 loadTab(Tab.Tickets);
                 loadTickets(selectedEventIndex);
             }
-            else { MessageBox.Show("Not enough tickets in that class for your order."); }
+            else { MessageBox.Show("Not enough tickets in that class for your order or buyer is invalid"); }
 
 
         }
@@ -386,7 +386,7 @@ namespace TicketShop
             {
                 try
                 {
-                    if (comboBox_deleteBy.SelectedItem.ToString() == "Id")
+                    if (comboBox_deleteBy.SelectedItem.ToString() == "Id:")
                     {
                         administration.Events[selectedEventIndex].DeleteTickets(Convert.ToInt32(textBox_deleteTickets.Text));
                     }

@@ -16,7 +16,6 @@ namespace TestTicketShop
         string demands;
         string player;
         string opponent;
-        int Price;
 
         [TestInitialize]
         public void TestInitialize()
@@ -49,8 +48,8 @@ namespace TestTicketShop
         {
             Event e1 = new Performance(name, id, date, location, availableSeats, artist, demands);
             Event e2 = new Match(name, id, date, location, availableSeats, player, opponent);
-            string expected = ("Performance: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price + ", " + artist + ", " + demands);
-            string expected2 = ("Match: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price + ", " + player + ", " + opponent);
+            string expected = ("Performance: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats +  ", " + artist + ", " + demands);
+            string expected2 = ("Match: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats +  ", " + player + ", " + opponent);
 
             Assert.AreEqual(expected, e1.ToString());
             Assert.AreEqual(expected2, e2.ToString());

@@ -61,6 +61,8 @@ namespace TicketShop
         public bool OrderTickets(int amount, int chairClass, Buyer buyer)
         {
             List<int> ticketsIndexes = new List<int>();
+            if (buyer == null) { return false; }
+            if (string.IsNullOrEmpty(buyer.Name) || string.IsNullOrEmpty(buyer.Address) || buyer.Birth == null) { return false; }
 
             for (int i = 0; i < amount; i++)
             {
@@ -78,7 +80,6 @@ namespace TicketShop
 
             if (ticketsIndexes.Count == amount)
             {
-
                 foreach (int index in ticketsIndexes)
                 {
                     Tickets[index].Buyer = buyer;

@@ -14,7 +14,7 @@ namespace TestTicketShop
         DateTime date;
         string location;
         int availableSeats;
-        int Price;
+
         [TestInitialize]
         public void TestInitialize()
         {
@@ -25,7 +25,7 @@ namespace TestTicketShop
             date = new DateTime(2018, 9, 12);
             location = "HomeStreet 1";
             availableSeats = 15000;
-            Price = 0;
+
         }
         [TestMethod]
         public void TestPerformanceConstructor()
@@ -44,7 +44,7 @@ namespace TestTicketShop
         public void TestPerformanceToString()
         {
             Performance p = new Performance(name, id, date, location, availableSeats, artist, demands);
-            string expected = ("Performance: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats + ", Price: €" + Price + ", " + artist + ", " + demands);
+            string expected = ("Performance: " + id + ", " + name + ", " + date + ", " + location + ", Seats: " + availableSeats +  ", " + artist + ", " + demands);
 
             Assert.AreEqual(expected, p.ToString());
         }

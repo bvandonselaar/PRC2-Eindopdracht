@@ -541,7 +541,7 @@
             // 
             // button_orderTickets
             // 
-            this.button_orderTickets.Location = new System.Drawing.Point(358, 44);
+            this.button_orderTickets.Location = new System.Drawing.Point(6, 83);
             this.button_orderTickets.Name = "button_orderTickets";
             this.button_orderTickets.Size = new System.Drawing.Size(121, 32);
             this.button_orderTickets.TabIndex = 16;
@@ -563,9 +563,9 @@
             // 
             this.listBox_tickets.FormattingEnabled = true;
             this.listBox_tickets.HorizontalScrollbar = true;
-            this.listBox_tickets.Location = new System.Drawing.Point(6, 44);
+            this.listBox_tickets.Location = new System.Drawing.Point(6, 122);
             this.listBox_tickets.Name = "listBox_tickets";
-            this.listBox_tickets.Size = new System.Drawing.Size(346, 472);
+            this.listBox_tickets.Size = new System.Drawing.Size(891, 394);
             this.listBox_tickets.TabIndex = 0;
             this.listBox_tickets.SelectedIndexChanged += new System.EventHandler(this.listBox_tickets_SelectedIndexChanged);
             // 
@@ -730,7 +730,7 @@
             // 
             // button_deleteTickets
             // 
-            this.button_deleteTickets.Location = new System.Drawing.Point(686, 216);
+            this.button_deleteTickets.Location = new System.Drawing.Point(776, 83);
             this.button_deleteTickets.Name = "button_deleteTickets";
             this.button_deleteTickets.Size = new System.Drawing.Size(121, 32);
             this.button_deleteTickets.TabIndex = 17;
@@ -741,7 +741,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(356, 226);
+            this.label17.Location = new System.Drawing.Point(461, 93);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(55, 13);
             this.label17.TabIndex = 18;
@@ -751,16 +751,16 @@
             // 
             this.comboBox_deleteBy.FormattingEnabled = true;
             this.comboBox_deleteBy.Items.AddRange(new object[] {
-            "Id",
-            "Buyer-name"});
-            this.comboBox_deleteBy.Location = new System.Drawing.Point(417, 223);
+            "Id:",
+            "Buyer-name:"});
+            this.comboBox_deleteBy.Location = new System.Drawing.Point(522, 90);
             this.comboBox_deleteBy.Name = "comboBox_deleteBy";
             this.comboBox_deleteBy.Size = new System.Drawing.Size(121, 21);
             this.comboBox_deleteBy.TabIndex = 19;
             // 
             // textBox_deleteTickets
             // 
-            this.textBox_deleteTickets.Location = new System.Drawing.Point(544, 223);
+            this.textBox_deleteTickets.Location = new System.Drawing.Point(649, 90);
             this.textBox_deleteTickets.Name = "textBox_deleteTickets";
             this.textBox_deleteTickets.Size = new System.Drawing.Size(121, 20);
             this.textBox_deleteTickets.TabIndex = 20;
