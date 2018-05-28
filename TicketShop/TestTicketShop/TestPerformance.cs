@@ -39,7 +39,6 @@ namespace TestTicketShop
             Assert.AreEqual(location, p.Location);
             Assert.AreEqual(availableSeats, p.AvailableSeats);
             Assert.AreEqual(date, p.Date);
-            Assert.AreEqual(Price, p.Price);
         }
         [TestMethod]
         public void TestPerformanceToString()

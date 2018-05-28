@@ -13,6 +13,7 @@ namespace TestTicketShop
         string name;
         DateTime Birth;
         string Address;
+        decimal startingPrice;
         [TestInitialize]
         public void TestInitialize()
         {
@@ -22,12 +23,13 @@ namespace TestTicketShop
             name = "J. Johansson";
             Birth = new DateTime(2018, 9, 12);
             Address = "HomeStreet 1";
+            startingPrice = 100;
         }
         [TestMethod]
         public void TestTicketConstructor()
         {
             Buyer buyer = new Buyer(name, Birth, Address);
-            Ticket t = new Ticket(id, clas, seat, buyer);
+            Ticket t = new Ticket(id, clas, seat, buyer, startingPrice);
 
             Assert.AreEqual(name, buyer.Name);
             Assert.AreEqual(Birth, buyer.Birth);
@@ -41,7 +43,7 @@ namespace TestTicketShop
         public void TestTicketToString()
         {
             Buyer buyer = new Buyer(name, Birth, Address);
-            Ticket t = new Ticket(id, clas, seat, buyer);
+            Ticket t = new Ticket(id, clas, seat, buyer, startingPrice);
             string expected = (id + ", " + clas + ", " + seat + ", " + buyer);
             Assert.AreEqual(expected, t.ToString());
         }
