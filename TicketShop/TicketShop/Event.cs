@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace TicketShop
 {
+    [Serializable]
     public abstract class Event
     {
         public string Name { get; private set; }
@@ -24,32 +26,12 @@ namespace TicketShop
             Tickets = new List<Ticket>();
         }
 
-        public class SortEventsByNameDescending : IComparer<Event>
-        {
-            int IComparer<Event>.Compare(Event x, Event y)
-            {
-                return string.Compare(y.Name, x.Name);
-            }
-        }
-        public class SortEventsByNameAscending : IComparer<Event>
-        {
-            int IComparer<Event>.Compare(Event x, Event y)
-            {
-                return string.Compare(x.Name, y.Name);
-            }
-        }
 
-        public void GenerateTickets (decimal startingPrice)
+        public void GenerateTickets(decimal startingPrice)
         {
             int classOne = (int)Decimal.Round((decimal)(AvailableSeats * 0.20));
             int classTwo = (int)Decimal.Round((decimal)(AvailableSeats * 0.30));
             int classThree = (int)Decimal.Round((decimal)(AvailableSeats * 0.50));
-
-            /* OPLOSSING 1 (delete wat hier boven staat natuurlijk)
-            int classOne = (int)Decimal.Round((decimal)(AvailableSeats * 0.20 + 0.5));
-            int classTwo = (int)Decimal.Round((decimal)(AvailableSeats * 0.30 + 0.5));
-            int classThree = (int)Decimal.Round((decimal)(AvailableSeats * 0.50 + 0.5));
-            */
 
             int index = 0;
             for (; index < classOne; index++)
@@ -68,13 +50,12 @@ namespace TicketShop
                 Tickets.Add(ticket);
             }
 
-            /* OPLOSSING 2
-            while(Tickets.Count < AvailableSeats)
+            // OPLOSSING
+            while (Tickets.Count < AvailableSeats)
             {
                 Ticket ticket = new Ticket(index, 3, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
                 Tickets.Add(ticket);
             }
-            */
         }
 
         public bool OrderTickets(int amount, int chairClass, Buyer buyer)
@@ -97,7 +78,7 @@ namespace TicketShop
 
             if (ticketsIndexes.Count == amount)
             {
-                
+
                 foreach (int index in ticketsIndexes)
                 {
                     Tickets[index].Buyer = buyer;
@@ -107,26 +88,25 @@ namespace TicketShop
             return false;
         }
 
-        public bool DeleteTickets(int ticketID)
+        public void DeleteTickets(int ticketID)
         {
             Ticket t = FindTicket(ticketID);
-            if (t == null) { return false; }
 
             int index = Tickets.IndexOf(t);
             decimal startingPrice = Tickets[index].StartingPrice;
-            Tickets[index] = new Ticket(ticketID, 0, index, new Buyer("none", new DateTime(0, 0, 0), "none"), startingPrice);
-            return true;
+            int klasse = Tickets[index].Class;
+            Tickets[index] = new Ticket(ticketID, klasse, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
         }
 
-        public bool DeleteTickets(string buyerName)
+        public void DeleteTickets(string buyerName)
         {
-            while(Tickets.Exists(x => x.Buyer.Name == buyerName))
+            while (Tickets.Exists(x => x.Buyer.Name == buyerName))
             {
                 int index = Tickets.FindIndex(y => y.Buyer.Name == buyerName);
                 decimal startingPrice = Tickets[index].StartingPrice;
-                Tickets[index] = new Ticket(index, 0, index, new Buyer("none", new DateTime(0, 0, 0), "none"), startingPrice);
+                int klasse = Tickets[index].Class;
+                Tickets[index] = new Ticket(index, klasse, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
             }
-            return true;
         }
 
         public Ticket FindTicket(int id)
@@ -164,6 +144,55 @@ namespace TicketShop
             + ", " + Date
             + ", " + Location
             + ", Seats: " + AvailableSeats;
+        }
+
+
+        public class NameDescendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return string.Compare(y.Name, x.Name);
+            }
+        }
+
+        public class NameAscendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return string.Compare(x.Name, y.Name);
+            }
+        }
+
+        public class IdAscendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return x.Id.CompareTo(y.Id);
+            }
+        }
+
+        public class IdDescendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return y.Id.CompareTo(x.Id);
+            }
+        }
+
+        public class DateAscendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return x.Date.CompareTo(y.Date);
+            }
+        }
+
+        public class DateDescendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return y.Date.CompareTo(x.Date);
+            }
         }
     }
 }

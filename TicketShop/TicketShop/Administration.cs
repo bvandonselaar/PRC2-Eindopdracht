@@ -14,16 +14,34 @@ namespace TicketShop
 
         public List<Event> Events { get; private set; }
 
+        public enum Order : byte { Ascending, Descending };
+        public enum SortBy : byte { Name, Id, Date };
+
         public Administration()
         {
             Events = new List<Event>();
         }
 
-        public void Sort(string order, string mode)
+        public void Sort(Order order, SortBy sortBy)
         {
-            IComparer<Event> compareEvents;
-            if (order == "Ascending") { compareEvents = new Event.SortEventsByNameAscending(); }
-            else { compareEvents = new Event.SortEventsByNameDescending(); }
+            IComparer<Event> compareEvents = null;
+            switch (sortBy)
+            {
+                case SortBy.Name:
+                    if (order == Order.Ascending) { compareEvents = new Event.NameAscendingComparer(); }
+                    else { compareEvents = new Event.NameDescendingComparer(); }
+                    break;
+
+                case SortBy.Id:
+                    if (order == Order.Ascending) { compareEvents = new Event.IdAscendingComparer(); }
+                    else { compareEvents = new Event.IdDescendingComparer(); }
+                    break;
+
+                case SortBy.Date:
+                    if (order == Order.Ascending) { compareEvents = new Event.DateAscendingComparer(); }
+                    else { compareEvents = new Event.DateDescendingComparer(); }
+                    break;
+            }
 
             Events.Sort(compareEvents);
         }
@@ -61,77 +79,39 @@ namespace TicketShop
 
         public void Save(string filename)
         {
-           /* - Deze moeten staan in de form
-            * try
+            using (Stream output = File.Create(@filename))
             {
-                using (Stream output = File.Create(@filename))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    formatter.Serialize(output, Events);
-                }
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(output, Events);
             }
-            catch (ArgumentNullException ex)
-            {
-                throw new ArgumentNullException("serialisationstream is null", ex);
-            }
-            catch (SerializationException ex)
-            {
-                throw new SerializationException("Can not serialize, because of unserializable attributes", ex);
-            }
-            catch (ArgumentException ex)
-            {
-                throw new ArgumentException("Invalid path", ex);
-            }*/
         }
 
         public void Load(string filename)
-        {/* - Deze moeten staan in de form
-            try
+        {
+            using (Stream input = File.OpenRead(filename))
             {
-                using (Stream input = File.OpenRead(filename))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    Events = (List<Event>)formatter.Deserialize(input);
-                }
+                BinaryFormatter formatter = new BinaryFormatter();
+                Events = (List<Event>)formatter.Deserialize(input);
             }
-            catch (ArgumentNullException ex)
-            {
-                throw new ArgumentNullException("The deserializationStream is null", ex);
-            }
-            catch (SerializationException ex)
-            {
-                throw new SerializationException("Can not deserialize, because of wrong values", ex);
-            }
-            catch (ArgumentException ex)
-            {
-                throw new ArgumentException("Invalid path", ex);
-            }*/
         }
 
         public void Export(string filename)
-        {/* - Deze moeten staan in de form
-            try
+        {
+
+            using (StreamWriter writer = new StreamWriter(@filename))
             {
-                using (StreamWriter writer = new StreamWriter(@filename))
+                foreach (Event e in Events)
                 {
-                    foreach (Event e in Events)
+                    writer.WriteLine(e.ToString());
+                    writer.WriteLine("{");
+                    foreach(Ticket t in e.Tickets)
                     {
-                        writer.WriteLine(e.ToString());
+                        writer.WriteLine("\t" + t.ToString());
                     }
+                    writer.WriteLine("}");
+                    writer.WriteLine("\n");
                 }
             }
-            catch (IOException ex)
-            {
-                throw new IOException("Export error", ex);
-            }
-            catch (ArgumentNullException ex)
-            {
-                throw new ArgumentNullException("Path is null", ex);
-            }
-            catch (ArgumentException ex)
-            {
-                throw new ArgumentException("Invalid path", ex);
-            }*/
         }
     }
 }

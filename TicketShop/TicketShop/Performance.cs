@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicketShop
 {
+    [Serializable]
     public class Performance : Event
     {
         public string Artist { get; private set; }

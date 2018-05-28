@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicketShop
 {
+    [Serializable]
     public class Ticket : ISellable
     {
 
@@ -39,7 +40,7 @@ namespace TicketShop
             + ", " + Class
             + ", " + Seat
             + ", " + Buyer
-            + ", " + returnPrice;
+            + ", €" + returnPrice.ToString().Replace(",", ".");
         }
     }
 }

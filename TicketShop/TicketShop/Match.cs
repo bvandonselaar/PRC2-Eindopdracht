@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicketShop
 {
+    [Serializable]
     public class Match : Event
     {
         public string Player { get; private set; }
