@@ -21,7 +21,11 @@ namespace TicketShop
         {
             Events = new List<Event>();
         }
-
+        /// <summary>
+        /// Sorteert de events op basis van de 2 gegevens
+        /// </summary>
+        /// <param name="order">Wat er moet worden gesorteerd (type)</param>
+        /// <param name="sortBy">Hoe het moet worden gesorteerd(type)</param>
         public void Sort(Order order, SortBy sortBy)
         {
             IComparer<Event> compareEvents = null;
@@ -45,7 +49,11 @@ namespace TicketShop
 
             Events.Sort(compareEvents);
         }
-
+        /// <summary>
+        /// Maakt een nieuw event aan
+        /// </summary>
+        /// <param name="eventx">het event dat moet worden toegevoegd</param>
+        /// <returns>Of het toevoegen gelukt is</returns>
         public bool AddEvent(Event eventx)
         {
             if (eventx == null) { return false; }
@@ -53,7 +61,11 @@ namespace TicketShop
             Events.Add(eventx);
             return true;
         }
-
+        /// <summary>
+        /// Verwijdert een Event 
+        /// </summary>
+        /// <param name="id">Het ID van het event dat verwijderd moet worden</param>
+        /// <returns>of het verwijderen gelukt is</returns>
         public bool DeleteEvent(int id)
         {
             Event e = FindEvent(id);
@@ -62,7 +74,11 @@ namespace TicketShop
             Events.Remove(e);
             return true;
         }
-
+        /// <summary>
+        /// Zoekt en vindt een event met het meegegeven ID
+        /// </summary>
+        /// <param name="id">Het ID van het event dat moet worden gezocht</param>
+        /// <returns>of het event gevonden is en indien gevonden het hele event</returns>
         public Event FindEvent(int id)
         {
             foreach (Event e in Events)
@@ -71,12 +87,19 @@ namespace TicketShop
             }
             return null;
         }
-
+        /// <summary>
+        /// Zoekt de index in de Events van het meegegeven ID
+        /// </summary>
+        /// <param name="id">Het ID waar de index van moet worden gevonden</param>
+        /// <returns>De index van het gezochte Event</returns>
         public int IndexOf(int id)
         {
             return Events.IndexOf(FindEvent(id));
         }
-
+        /// <summary>
+        /// Slaat de gegevens op in een file
+        /// </summary>
+        /// <param name="filename">Hoe het bestand gaat heten</param>
         public void Save(string filename)
         {
             using (Stream output = File.Create(@filename))
@@ -85,7 +108,10 @@ namespace TicketShop
                 formatter.Serialize(output, Events);
             }
         }
-
+        /// <summary>
+        /// Laad de gegevens uit een file en zet ze in de events
+        /// </summary>
+        /// <param name="filename">de naam van het bestand die je laadt</param>
         public void Load(string filename)
         {
             using (Stream input = File.OpenRead(filename))
@@ -94,7 +120,10 @@ namespace TicketShop
                 Events = (List<Event>)formatter.Deserialize(input);
             }
         }
-
+        /// <summary>
+        /// Schrijft de gegevens weg naar een file
+        /// </summary>
+        /// <param name="filename">de naam van de file waarin het wordt opgeslagen</param>
         public void Export(string filename)
         {
 

@@ -16,7 +16,9 @@ namespace TicketShop
         public Buyer Buyer { get; set; }
         public decimal StartingPrice { get; private set; }
 
-
+        /// <summary>
+        /// Berekent de prijs op basis van de startprijs en de klasse
+        /// </summary>
         public decimal Price
         {
             get

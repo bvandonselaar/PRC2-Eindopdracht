@@ -84,5 +84,6 @@ namespace TestTicketShop
 
             Assert.AreEqual(null, a.FindEvent(30));
         }
+        //Moet de Sort hier nog getest worden? Afmaken
     }
 }

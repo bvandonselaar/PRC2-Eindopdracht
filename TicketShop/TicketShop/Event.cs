@@ -26,7 +26,10 @@ namespace TicketShop
             Tickets = new List<Ticket>();
         }
 
-
+        /// <summary>
+        /// Creeërt het de tickets voor een event afhankelijk van het aantal seats
+        /// </summary>
+        /// <param name="startingPrice">de prijs voor de 1e klasse</param>
         public void GenerateTickets(decimal startingPrice)
         {
             int classOne = (int)Decimal.Round((decimal)(AvailableSeats * 0.20));
@@ -57,7 +60,13 @@ namespace TicketShop
                 Tickets.Add(ticket);
             }
         }
-
+        /// <summary>
+        /// Het bestellen van tickets door een buyer voor een event
+        /// </summary>
+        /// <param name="amount">Het aantal gewenste tickets door de buyer</param>
+        /// <param name="chairClass">De gewenste klasse van de klant</param>
+        /// <param name="buyer">De klant</param>
+        /// <returns>Of het bestellen gelukt is</returns>
         public bool OrderTickets(int amount, int chairClass, Buyer buyer)
         {
             List<int> ticketsIndexes = new List<int>();
@@ -88,7 +97,10 @@ namespace TicketShop
             }
             return false;
         }
-
+        /// <summary>
+        /// Verwijdert de tickets op basis van het ID
+        /// </summary>
+        /// <param name="ticketID">Het ticket dat moet worden verwijderd</param>
         public void DeleteTickets(int ticketID)
         {
             Ticket t = FindTicket(ticketID);
@@ -98,7 +110,10 @@ namespace TicketShop
             int klasse = Tickets[index].Class;
             Tickets[index] = new Ticket(ticketID, klasse, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
         }
-
+        /// <summary>
+        /// Verwijdert de tickets op basis van het naam van de koper
+        /// </summary>
+        /// <param name="buyerName">De koper waarvan de tickets verwijderd moeten worden</param>
         public void DeleteTickets(string buyerName)
         {
             while (Tickets.Exists(x => x.Buyer.Name == buyerName))
@@ -109,7 +124,11 @@ namespace TicketShop
                 Tickets[index] = new Ticket(index, klasse, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
             }
         }
-
+        /// <summary>
+        /// Vindt het ticket waarvan het ID wordt gevraagd
+        /// </summary>
+        /// <param name="id">Het ID van de ticket die moet worden gezocht en gevonden</param>
+        /// <returns>Het ticket als het gevonden is, anders null</returns>
         public Ticket FindTicket(int id)
         {
             foreach (Ticket t in Tickets)
@@ -118,12 +137,20 @@ namespace TicketShop
             }
             return null;
         }
-
+        /// <summary>
+        /// Zoekt de index van een Ticket
+        /// </summary>
+        /// <param name="id">Het ID van de ticket die moet worden gezocht en gevonden</param>
+        /// <returns>Het ticket als het gevonden is, anders null</returns>
         public int IndexOf(int id)
         {
             return Tickets.IndexOf(FindTicket(id));
         }
-
+        /// <summary>
+        /// Zoekt of het een koper kan vinden met de naam
+        /// </summary>
+        /// <param name="name">Het ID van de ticket die moet worden gezocht en gevonden</param>
+        /// <returns>De koper als deze is gevonden, anders null</returns>
         public Buyer FindBuyer(string name)
         {
             foreach (Buyer b in Buyers)
@@ -147,7 +174,9 @@ namespace TicketShop
             + ", Seats: " + AvailableSeats;
         }
 
-
+        /// <summary>
+        /// Sorteert op naam oplopend (alfabetisch)
+        /// </summary>
         public class NameDescendingComparer : IComparer<Event>
         {
             int IComparer<Event>.Compare(Event x, Event y)
@@ -155,7 +184,9 @@ namespace TicketShop
                 return string.Compare(y.Name, x.Name);
             }
         }
-
+        /// <summary>
+        /// Sorteert op naam aflopend (alfabetisch)
+        /// </summary>
         public class NameAscendingComparer : IComparer<Event>
         {
             int IComparer<Event>.Compare(Event x, Event y)
@@ -163,7 +194,9 @@ namespace TicketShop
                 return string.Compare(x.Name, y.Name);
             }
         }
-
+        /// <summary>
+        /// Sorteert op ID oplopend (laagste eerst)
+        /// </summary>
         public class IdAscendingComparer : IComparer<Event>
         {
             int IComparer<Event>.Compare(Event x, Event y)
@@ -171,7 +204,9 @@ namespace TicketShop
                 return x.Id.CompareTo(y.Id);
             }
         }
-
+        /// <summary>
+        /// Sorteert op ID aflopend (hoogste eerst)
+        /// </summary>
         public class IdDescendingComparer : IComparer<Event>
         {
             int IComparer<Event>.Compare(Event x, Event y)
@@ -179,7 +214,9 @@ namespace TicketShop
                 return y.Id.CompareTo(x.Id);
             }
         }
-
+        /// <summary>
+        /// Sorteert op datum oplopend (nieuwste eerst)
+        /// </summary>
         public class DateAscendingComparer : IComparer<Event>
         {
             int IComparer<Event>.Compare(Event x, Event y)
@@ -187,7 +224,9 @@ namespace TicketShop
                 return x.Date.CompareTo(y.Date);
             }
         }
-
+        /// <summary>
+        /// Sorteert op datum aflopend (oudste eerst)
+        /// </summary>
         public class DateDescendingComparer : IComparer<Event>
         {
             int IComparer<Event>.Compare(Event x, Event y)

@@ -34,7 +34,9 @@ namespace TicketShop
             groupBox_match.Visible = false;
             groupBox_performance.Visible = false;
         }
-
+        /// <summary>
+        /// Voegt en Verwijdert Tabs die wel en niet nodig zijn
+        /// </summary>
         private void saveTabs()
         {
             foreach (TabPage t in tabControl_administration.TabPages)
@@ -47,7 +49,11 @@ namespace TicketShop
                 tabControl_administration.TabPages.Remove(tabs[i]);
             }
         }
-
+        /// <summary>
+        /// Laadt alle events en laat deze zien die onder de categorie vallen die zijn geslecteerd
+        /// </summary>
+        /// <param name="match">Of de matches getoond moeten worden</param>
+        /// <param name="performance">Of de optredens getoond moeten worden</param>
         private void loadEvents(bool match, bool performance)
         {
             listBox_events.Items.Clear();
@@ -68,7 +74,10 @@ namespace TicketShop
 
             }
         }
-
+        /// <summary>
+        /// Laad de tickets zien bij het event
+        /// </summary>
+        /// <param name="index">de index van het event waar de tickets van moeten worden getoond</param>
         private void loadTickets(int index)
         {
             listBox_tickets.Items.Clear();
@@ -77,19 +86,30 @@ namespace TicketShop
                 listBox_tickets.Items.Add(t.ToString());
             }
         }
-
+        /// <summary>
+        /// Laad de geselecteerde tab en verwijdert de rest
+        /// </summary>
+        /// <param name="tabIndex">Het tabblad die je wilt zien</param>
         private void loadTab(Tab tabIndex)
         {
             tabControl_administration.TabPages.Add(tabs[(int)tabIndex]);
             tabControl_administration.TabPages.Remove(tabControl_administration.TabPages[0]);
         }
-
+        /// <summary>
+        /// Hier kom je op het veld dat een nieuw event aanmaakt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_newEvent_Click(object sender, EventArgs e)
         {
             loadTab(Tab.addNewEvent);
             comboBox_eventType.SelectedIndex = 0;
         }
-
+        /// <summary>
+        /// Hier maak je een nieuw event en bevestig je deze
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_addNewEvent_Click(object sender, EventArgs e)
         {
             if (FindAvailableId(out int id) && comboBox_eventType.SelectedItem != null)
@@ -117,7 +137,15 @@ namespace TicketShop
                 MessageBox.Show("No ids left or invalid Event-type");
             }
         }
-
+        /// <summary>
+        /// Hier vul je de gegevens in voor het event dat je gaat maken
+        /// </summary>
+        /// <param name="name">naam van event</param>
+        /// <param name="id">id van event</param>
+        /// <param name="date">moment van event</param>
+        /// <param name="location">locatie van event</param>
+        /// <param name="seats">hoeveel plaatsen er zijn op het event</param>
+        /// <returns></returns>
         private Event ConstructEvent(string name, int id, DateTime date, string location, int seats)
         {
             if (comboBox_eventType.SelectedItem.ToString() == "Match")
@@ -140,7 +168,11 @@ namespace TicketShop
             }
             return null;
         }
-
+        /// <summary>
+        /// zoekt naar het laagst beschikbare id
+        /// </summary>
+        /// <param name="id">het id dat je gaat gebruiken om een nummer aan toe te wijzen</param>
+        /// <returns>het laagst mogelijk id</returns>
         private bool FindAvailableId(out int id)
         {
             bool foundId = true;
@@ -168,13 +200,21 @@ namespace TicketShop
             }
             return foundId;
         }
-
+        /// <summary>
+        /// Gaat terug naar homepage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_newEventBack_Click(object sender, EventArgs e)
         {
             loadTab(Tab.Events);
             loadEvents(true, true);
         }
-
+        /// <summary>
+        /// Laat de extra gegevens zien die bij een specifiek event horen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBox_eventType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox_eventType.SelectedItem.ToString() == "Match")
@@ -188,7 +228,11 @@ namespace TicketShop
                 groupBox_performance.Visible = true;
             }
         }
-
+        /// <summary>
+        /// Knop om een event te verwijderen op te starten
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_deleteEvent_Click(object sender, EventArgs e)
         {
             if (selectedEventIndex != -1)
@@ -198,7 +242,11 @@ namespace TicketShop
             }
             else { MessageBox.Show("Select Event"); }
         }
-
+        /// <summary>
+        /// Zoekt in listbox naar Id van geselecteerd item
+        /// </summary>
+        /// <param name="data">alle data</param>
+        /// <returns>Het ID van het listbox item of -1 indien niet gevonden</returns>
         private int GetIdFromListBoxItem(ListBox data)
         {
             if (data.SelectedItem != null)
@@ -208,7 +256,11 @@ namespace TicketShop
             }
             else { return -1; }
         }
-
+        /// <summary>
+        /// Knop om de pagina waar je de tickets kan selecteren opent
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_showTickets_Click(object sender, EventArgs e)
         {
 
@@ -219,19 +271,31 @@ namespace TicketShop
             }
             else { MessageBox.Show("Select Event"); }
         }
-
+        /// <summary>
+        /// knop om terug te gaan naar de homepage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_ticketsBack_Click(object sender, EventArgs e)
         {
             loadTab(Tab.Events);
             loadEvents(true, true);
         }
-
+        /// <summary>
+        /// knop om terug te gaan naar de homepage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_newTicketBack_Click(object sender, EventArgs e)
         {
             loadTab(Tab.Tickets);
             loadTickets(selectedEventIndex);
         }
-
+        /// <summary>
+        /// slaat het id tijdelijk op en toont de gegevens van het event op dat geselecteerd op het label
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBox_events_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = GetIdFromListBoxItem(listBox_events);
@@ -246,7 +310,11 @@ namespace TicketShop
             }
 
         }
-
+        /// <summary>
+        /// vraagt het id van de listbox en geeft de index ervan
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBox_tickets_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = GetIdFromListBoxItem(listBox_tickets);
@@ -259,14 +327,21 @@ namespace TicketShop
                 selectedEventIndex = -1;
             }
         }
-
+        /// <summary>
+        /// knop om naar de order tickets te gaan
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_orderTickets_Click(object sender, EventArgs e)
         {
-
             loadTab(Tab.orderTickets);
             comboBox_class.SelectedIndex = 0;
         }
-
+        /// <summary>
+        /// knop om de tickets te bestellen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_addOrderTickets_Click(object sender, EventArgs e)
         {
             Buyer b = new Buyer(textBox_buyerName.Text, dateTimePicker_buyerBirthday.Value, textBox_buyerAddress.Text);
@@ -279,10 +354,13 @@ namespace TicketShop
                 loadTickets(selectedEventIndex);
             }
             else { MessageBox.Show("Not enough tickets in that class for your order or buyer is invalid"); }
-
-
         }
 
+        /// <summary>
+        /// knop om op event te sorteren
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_sortEventName_Click(object sender, EventArgs e)
         {
             if (comboBox_order.SelectedItem != null && comboBox_sortBy.SelectedItem != null)
@@ -291,10 +369,12 @@ namespace TicketShop
                 loadEvents(checkBox_match.Checked, checkBox_performance.Checked);
             }
             else { MessageBox.Show("No 'Order' or 'Sort by' selected"); }
-
-
         }
-
+        /// <summary>
+        /// knop om gegevens op te slaan
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_save_Click(object sender, EventArgs e)
         {
             SaveFileDialog openSave = new SaveFileDialog();
@@ -322,7 +402,11 @@ namespace TicketShop
                 MessageBox.Show("Invalid path");
             }
         }
-
+        /// <summary>
+        /// knop om gegevens in te laden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_load_Click(object sender, EventArgs e)
         {
             OpenFileDialog openLoad = new OpenFileDialog();
@@ -352,6 +436,11 @@ namespace TicketShop
             }
         }
 
+        /// <summary>
+        /// knop om gegevens op te slaan en te exporteren
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_export_Click(object sender, EventArgs e)
         {
             SaveFileDialog openSave = new SaveFileDialog();
@@ -379,7 +468,11 @@ namespace TicketShop
                 MessageBox.Show("Invalid path");
             }
         }
-
+        /// <summary>
+        /// knop om naar de pagina te gaan waar je tickets kan verwijderen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_deleteTickets_Click(object sender, EventArgs e)
         {
             if (comboBox_deleteBy != null)

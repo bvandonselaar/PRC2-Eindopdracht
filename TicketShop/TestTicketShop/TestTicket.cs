@@ -25,7 +25,7 @@ namespace TestTicketShop
             Birth = new DateTime(2018, 9, 12);
             Address = "HomeStreet 1";
             startingPrice = 100;
-            clas2 = 2;
+            clas2 = 3;
         }
         [TestMethod]
         public void TestTicketConstructor()
@@ -43,12 +43,13 @@ namespace TestTicketShop
         }
         [TestMethod]
         public void TestTicketToString()
-        { 
+        {
+            decimal x = Decimal.Round(startingPrice/clas2, 2);
             Buyer buyer = new Buyer(name, Birth, Address);
             Ticket t = new Ticket(id, clas, seat, buyer, startingPrice);
             string expected = ("Id: "+ id + ", " + clas + ", " + seat + ", " + buyer + ", €" + startingPrice);
             Ticket t2 = new Ticket(id, clas2, seat, buyer, startingPrice);
-            string expected2 = ("Id: " + id + ", " + clas2 + ", " + seat + ", " + buyer + ", €" + 50.0);
+            string expected2 = ("Id: " + id + ", " + clas2 + ", " + seat + ", " + buyer + ", €" + x.ToString().Replace(",", "."));
             Assert.AreEqual(expected, t.ToString());
             Assert.AreEqual(expected2, t2.ToString());
             
