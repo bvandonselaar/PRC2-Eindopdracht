@@ -5,7 +5,7 @@ using System.Collections;
 namespace TicketShop
 {
     [Serializable]
-    public abstract class Event
+    public abstract class Event : IComparable
     {
         public string Name { get; private set; }
         public int Id { get; private set; }
@@ -14,6 +14,73 @@ namespace TicketShop
         public int AvailableSeats { get; private set; }
         public List<Ticket> Tickets { get; private set; }
         public List<Buyer> Buyers { get; private set; }
+
+        public enum SortBy : byte { Buyername, Price };
+
+        //Comparer Methods
+        //-----------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Sorteert op naam oplopend (alfabetisch)
+        /// </summary>
+        private class NameDescendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return string.Compare(y.Name, x.Name);
+            }
+        }
+        /// <summary>
+        /// Sorteert op naam aflopend (alfabetisch)
+        /// </summary>
+        private class NameAscendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return string.Compare(x.Name, y.Name);
+            }
+        }
+        /// <summary>
+        /// Sorteert op ID oplopend (laagste eerst)
+        /// </summary>
+        private class IdAscendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return x.Id.CompareTo(y.Id);
+            }
+        }
+        /// <summary>
+        /// Sorteert op ID aflopend (hoogste eerst)
+        /// </summary>
+        private class IdDescendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return y.Id.CompareTo(x.Id);
+            }
+        }
+        /// <summary>
+        /// Sorteert op datum oplopend (nieuwste eerst)
+        /// </summary>
+        private class DateAscendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return x.Date.CompareTo(y.Date);
+            }
+        }
+        /// <summary>
+        /// Sorteert op datum aflopend (oudste eerst)
+        /// </summary>
+        private class DateDescendingComparer : IComparer<Event>
+        {
+            int IComparer<Event>.Compare(Event x, Event y)
+            {
+                return y.Date.CompareTo(x.Date);
+            }
+        }
+        //-----------------------------------------------------------------------------------
 
         public Event(string name, int id, DateTime date, string location, int availableSeats)
         {
@@ -60,6 +127,7 @@ namespace TicketShop
                 Tickets.Add(ticket);
             }
         }
+
         /// <summary>
         /// Het bestellen van tickets door een buyer voor een event
         /// </summary>
@@ -91,12 +159,13 @@ namespace TicketShop
             {
                 foreach (int index in ticketsIndexes)
                 {
-                    Tickets[index].Buyer = buyer;
+                    Tickets[index].setNewBuyer(buyer);
                 }
                 return true;
             }
             return false;
         }
+
         /// <summary>
         /// Verwijdert de tickets op basis van het ID
         /// </summary>
@@ -110,6 +179,7 @@ namespace TicketShop
             int klasse = Tickets[index].Class;
             Tickets[index] = new Ticket(ticketID, klasse, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
         }
+
         /// <summary>
         /// Verwijdert de tickets op basis van het naam van de koper
         /// </summary>
@@ -124,6 +194,7 @@ namespace TicketShop
                 Tickets[index] = new Ticket(index, klasse, index, new Buyer("none", new DateTime(1, 1, 1), "none"), startingPrice);
             }
         }
+
         /// <summary>
         /// Vindt het ticket waarvan het ID wordt gevraagd
         /// </summary>
@@ -137,6 +208,7 @@ namespace TicketShop
             }
             return null;
         }
+
         /// <summary>
         /// Zoekt de index van een Ticket
         /// </summary>
@@ -146,6 +218,7 @@ namespace TicketShop
         {
             return Tickets.IndexOf(FindTicket(id));
         }
+
         /// <summary>
         /// Zoekt of het een koper kan vinden met de naam
         /// </summary>
@@ -160,6 +233,81 @@ namespace TicketShop
             return null;
         }
 
+        
+        /// <summary>
+        /// Default sort-order
+        /// </summary>
+        /// <param name="obj"> object to sort with this object </param>
+        /// <returns></returns>
+        int IComparable.CompareTo(object obj)
+        {
+            if (obj == null) { return 0; }
+            Event e = (Event)obj;
+            return this.Id.CompareTo(e.Id);
+        }
+        
+
+        
+        /// <summary>
+        /// Sorteert de tickets op basis van de 2 gegevens
+        /// </summary>
+        /// <param name="order">Wat er moet worden gesorteerd (type)</param>
+        /// <param name="sortBy">Hoe het moet worden gesorteerd(type)</param>
+        public void SortTickets(Administration.Order order, Event.SortBy sortBy)
+        {
+            
+            IComparer<Ticket> compareEvents = null;
+            switch (sortBy)
+            {
+                case SortBy.Price:
+                    if (order == Administration.Order.Ascending) { compareEvents = Ticket.SortPriceAscendingTicket(); }
+                    else { compareEvents = Ticket.SortPriceDescendingTicket(); }
+                    break;
+
+                case SortBy.Buyername:
+                    if (order == Administration.Order.Ascending) { compareEvents = Ticket.SortBuyernameAscendingTicket(); }
+                    else { compareEvents = Ticket.SortBuyernameDescendingTicket(); }
+                    break;
+            }
+
+            Tickets.Sort(compareEvents);
+            
+        }
+        
+
+        // These return the Comparer methods
+        //-----------------------------------------------------------------------------------
+        public static IComparer<Event> SortNameDescendingEvent()
+        {
+            return new NameDescendingComparer();
+        }
+
+        public static IComparer<Event> SortNameAscendingEvent()
+        {
+            return new NameAscendingComparer();
+        }
+
+        public static IComparer<Event> SortIdAscendingEvent()
+        {
+            return new IdAscendingComparer();
+        }
+
+        public static IComparer<Event> SortIdDescendingEvent()
+        {
+            return new IdDescendingComparer();
+        }
+
+        public static IComparer<Event> SortDateAscendingEvent()
+        {
+            return new DateAscendingComparer();
+        }
+
+        public static IComparer<Event> SortDateDescendingEvent()
+        {
+            return new DateDescendingComparer();
+        }
+        //-----------------------------------------------------------------------------------
+
         public override string ToString()
         {
             string eventStyle = "";
@@ -172,67 +320,6 @@ namespace TicketShop
             + ", " + Date
             + ", " + Location
             + ", Seats: " + AvailableSeats;
-        }
-
-        /// <summary>
-        /// Sorteert op naam oplopend (alfabetisch)
-        /// </summary>
-        public class NameDescendingComparer : IComparer<Event>
-        {
-            int IComparer<Event>.Compare(Event x, Event y)
-            {
-                return string.Compare(y.Name, x.Name);
-            }
-        }
-        /// <summary>
-        /// Sorteert op naam aflopend (alfabetisch)
-        /// </summary>
-        public class NameAscendingComparer : IComparer<Event>
-        {
-            int IComparer<Event>.Compare(Event x, Event y)
-            {
-                return string.Compare(x.Name, y.Name);
-            }
-        }
-        /// <summary>
-        /// Sorteert op ID oplopend (laagste eerst)
-        /// </summary>
-        public class IdAscendingComparer : IComparer<Event>
-        {
-            int IComparer<Event>.Compare(Event x, Event y)
-            {
-                return x.Id.CompareTo(y.Id);
-            }
-        }
-        /// <summary>
-        /// Sorteert op ID aflopend (hoogste eerst)
-        /// </summary>
-        public class IdDescendingComparer : IComparer<Event>
-        {
-            int IComparer<Event>.Compare(Event x, Event y)
-            {
-                return y.Id.CompareTo(x.Id);
-            }
-        }
-        /// <summary>
-        /// Sorteert op datum oplopend (nieuwste eerst)
-        /// </summary>
-        public class DateAscendingComparer : IComparer<Event>
-        {
-            int IComparer<Event>.Compare(Event x, Event y)
-            {
-                return x.Date.CompareTo(y.Date);
-            }
-        }
-        /// <summary>
-        /// Sorteert op datum aflopend (oudste eerst)
-        /// </summary>
-        public class DateDescendingComparer : IComparer<Event>
-        {
-            int IComparer<Event>.Compare(Event x, Event y)
-            {
-                return y.Date.CompareTo(x.Date);
-            }
         }
     }
 }

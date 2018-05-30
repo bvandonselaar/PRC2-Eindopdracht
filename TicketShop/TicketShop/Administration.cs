@@ -21,34 +21,36 @@ namespace TicketShop
         {
             Events = new List<Event>();
         }
+
         /// <summary>
         /// Sorteert de events op basis van de 2 gegevens
         /// </summary>
         /// <param name="order">Wat er moet worden gesorteerd (type)</param>
         /// <param name="sortBy">Hoe het moet worden gesorteerd(type)</param>
-        public void Sort(Order order, SortBy sortBy)
+        public void SortEvents(Order order, SortBy sortBy)
         {
             IComparer<Event> compareEvents = null;
             switch (sortBy)
             {
                 case SortBy.Name:
-                    if (order == Order.Ascending) { compareEvents = new Event.NameAscendingComparer(); }
-                    else { compareEvents = new Event.NameDescendingComparer(); }
+                    if (order == Order.Ascending) { compareEvents = Event.SortNameAscendingEvent(); }
+                    else { compareEvents = Event.SortNameDescendingEvent(); }
                     break;
 
                 case SortBy.Id:
-                    if (order == Order.Ascending) { compareEvents = new Event.IdAscendingComparer(); }
-                    else { compareEvents = new Event.IdDescendingComparer(); }
+                    if (order == Order.Ascending) { compareEvents = Event.SortIdAscendingEvent(); }
+                    else { compareEvents = Event.SortIdDescendingEvent(); }
                     break;
 
                 case SortBy.Date:
-                    if (order == Order.Ascending) { compareEvents = new Event.DateAscendingComparer(); }
-                    else { compareEvents = new Event.DateDescendingComparer(); }
+                    if (order == Order.Ascending) { compareEvents = Event.SortDateAscendingEvent(); }
+                    else { compareEvents = Event.SortDateDescendingEvent(); }
                     break;
             }
 
             Events.Sort(compareEvents);
         }
+
         /// <summary>
         /// Maakt een nieuw event aan
         /// </summary>
@@ -61,6 +63,7 @@ namespace TicketShop
             Events.Add(eventx);
             return true;
         }
+
         /// <summary>
         /// Verwijdert een Event 
         /// </summary>
@@ -74,6 +77,7 @@ namespace TicketShop
             Events.Remove(e);
             return true;
         }
+
         /// <summary>
         /// Zoekt en vindt een event met het meegegeven ID
         /// </summary>
@@ -87,6 +91,7 @@ namespace TicketShop
             }
             return null;
         }
+
         /// <summary>
         /// Zoekt de index in de Events van het meegegeven ID
         /// </summary>
@@ -96,6 +101,7 @@ namespace TicketShop
         {
             return Events.IndexOf(FindEvent(id));
         }
+
         /// <summary>
         /// Slaat de gegevens op in een file
         /// </summary>
@@ -108,6 +114,7 @@ namespace TicketShop
                 formatter.Serialize(output, Events);
             }
         }
+
         /// <summary>
         /// Laad de gegevens uit een file en zet ze in de events
         /// </summary>
@@ -120,6 +127,7 @@ namespace TicketShop
                 Events = (List<Event>)formatter.Deserialize(input);
             }
         }
+
         /// <summary>
         /// Schrijft de gegevens weg naar een file
         /// </summary>

@@ -31,6 +31,8 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl_administration = new System.Windows.Forms.TabControl();
             this.tabPage_events = new System.Windows.Forms.TabPage();
+            this.checkBox_performance = new System.Windows.Forms.CheckBox();
+            this.checkBox_match = new System.Windows.Forms.CheckBox();
             this.comboBox_order = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -45,6 +47,7 @@
             this.button_save = new System.Windows.Forms.Button();
             this.listBox_events = new System.Windows.Forms.ListBox();
             this.tabPage_event = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
             this.groupBox_match = new System.Windows.Forms.GroupBox();
             this.textBox_opponent = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -70,6 +73,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_eventType = new System.Windows.Forms.ComboBox();
             this.tabPage_tickets = new System.Windows.Forms.TabPage();
+            this.comboBox_orderTickets = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.comboBox_sortByTickets = new System.Windows.Forms.ComboBox();
+            this.button_sortTickets = new System.Windows.Forms.Button();
+            this.textBox_deleteTickets = new System.Windows.Forms.TextBox();
+            this.comboBox_deleteBy = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.button_deleteTickets = new System.Windows.Forms.Button();
             this.button_orderTickets = new System.Windows.Forms.Button();
             this.button_ticketsBack = new System.Windows.Forms.Button();
             this.listBox_tickets = new System.Windows.Forms.ListBox();
@@ -87,13 +99,18 @@
             this.textBox_buyerName = new System.Windows.Forms.TextBox();
             this.label_editTicket = new System.Windows.Forms.Label();
             this.button_newTicketBack = new System.Windows.Forms.Button();
-            this.checkBox_match = new System.Windows.Forms.CheckBox();
-            this.checkBox_performance = new System.Windows.Forms.CheckBox();
-            this.button_deleteTickets = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
-            this.comboBox_deleteBy = new System.Windows.Forms.ComboBox();
-            this.textBox_deleteTickets = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.tabPage_login = new System.Windows.Forms.TabPage();
+            this.button_loginAdmin = new System.Windows.Forms.Button();
+            this.button_loginUser = new System.Windows.Forms.Button();
+            this.tabPage_userEvents = new System.Windows.Forms.TabPage();
+            this.checkBox_userEventsPerformance = new System.Windows.Forms.CheckBox();
+            this.checkBox_userEventsMatch = new System.Windows.Forms.CheckBox();
+            this.comboBox_userEventsOrder = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.comboBox_userEventsSortBy = new System.Windows.Forms.ComboBox();
+            this.button_userEventsSort = new System.Windows.Forms.Button();
+            this.listBox_userEvents = new System.Windows.Forms.ListBox();
             this.tabControl_administration.SuspendLayout();
             this.tabPage_events.SuspendLayout();
             this.tabPage_event.SuspendLayout();
@@ -104,6 +121,8 @@
             this.tabPage_tickets.SuspendLayout();
             this.tabPage_orderTickets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_amountTickets)).BeginInit();
+            this.tabPage_login.SuspendLayout();
+            this.tabPage_userEvents.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_administration
@@ -111,10 +130,12 @@
             this.tabControl_administration.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl_administration.Controls.Add(this.tabPage_login);
             this.tabControl_administration.Controls.Add(this.tabPage_events);
             this.tabControl_administration.Controls.Add(this.tabPage_event);
             this.tabControl_administration.Controls.Add(this.tabPage_tickets);
             this.tabControl_administration.Controls.Add(this.tabPage_orderTickets);
+            this.tabControl_administration.Controls.Add(this.tabPage_userEvents);
             this.tabControl_administration.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl_administration.Location = new System.Drawing.Point(12, 12);
             this.tabControl_administration.Name = "tabControl_administration";
@@ -146,6 +167,30 @@
             this.tabPage_events.TabIndex = 0;
             this.tabPage_events.Text = "Events";
             this.tabPage_events.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_performance
+            // 
+            this.checkBox_performance.AutoSize = true;
+            this.checkBox_performance.Checked = true;
+            this.checkBox_performance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_performance.Location = new System.Drawing.Point(68, 141);
+            this.checkBox_performance.Name = "checkBox_performance";
+            this.checkBox_performance.Size = new System.Drawing.Size(86, 17);
+            this.checkBox_performance.TabIndex = 14;
+            this.checkBox_performance.Text = "Performance";
+            this.checkBox_performance.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_match
+            // 
+            this.checkBox_match.AutoSize = true;
+            this.checkBox_match.Checked = true;
+            this.checkBox_match.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_match.Location = new System.Drawing.Point(6, 141);
+            this.checkBox_match.Name = "checkBox_match";
+            this.checkBox_match.Size = new System.Drawing.Size(56, 17);
+            this.checkBox_match.TabIndex = 13;
+            this.checkBox_match.Text = "Match";
+            this.checkBox_match.UseVisualStyleBackColor = true;
             // 
             // comboBox_order
             // 
@@ -183,7 +228,7 @@
             // 
             // button_sortEventName
             // 
-            this.button_sortEventName.Location = new System.Drawing.Point(361, 112);
+            this.button_sortEventName.Location = new System.Drawing.Point(352, 112);
             this.button_sortEventName.Name = "button_sortEventName";
             this.button_sortEventName.Size = new System.Drawing.Size(75, 23);
             this.button_sortEventName.TabIndex = 8;
@@ -296,6 +341,15 @@
             this.tabPage_event.TabIndex = 1;
             this.tabPage_event.Text = "Add New Event";
             this.tabPage_event.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(483, 247);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(70, 13);
+            this.label18.TabIndex = 15;
+            this.label18.Text = "* not required";
             // 
             // groupBox_match
             // 
@@ -524,6 +578,11 @@
             // 
             // tabPage_tickets
             // 
+            this.tabPage_tickets.Controls.Add(this.comboBox_orderTickets);
+            this.tabPage_tickets.Controls.Add(this.label19);
+            this.tabPage_tickets.Controls.Add(this.label20);
+            this.tabPage_tickets.Controls.Add(this.comboBox_sortByTickets);
+            this.tabPage_tickets.Controls.Add(this.button_sortTickets);
             this.tabPage_tickets.Controls.Add(this.textBox_deleteTickets);
             this.tabPage_tickets.Controls.Add(this.comboBox_deleteBy);
             this.tabPage_tickets.Controls.Add(this.label17);
@@ -538,6 +597,87 @@
             this.tabPage_tickets.TabIndex = 2;
             this.tabPage_tickets.Text = "Tickets";
             this.tabPage_tickets.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_orderTickets
+            // 
+            this.comboBox_orderTickets.FormattingEnabled = true;
+            this.comboBox_orderTickets.Location = new System.Drawing.Point(695, 95);
+            this.comboBox_orderTickets.Name = "comboBox_orderTickets";
+            this.comboBox_orderTickets.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_orderTickets.TabIndex = 25;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(653, 98);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(36, 13);
+            this.label19.TabIndex = 24;
+            this.label19.Text = "Order:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(473, 98);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(43, 13);
+            this.label20.TabIndex = 23;
+            this.label20.Text = "Sort by:";
+            // 
+            // comboBox_sortByTickets
+            // 
+            this.comboBox_sortByTickets.FormattingEnabled = true;
+            this.comboBox_sortByTickets.Location = new System.Drawing.Point(522, 95);
+            this.comboBox_sortByTickets.Name = "comboBox_sortByTickets";
+            this.comboBox_sortByTickets.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_sortByTickets.TabIndex = 22;
+            // 
+            // button_sortTickets
+            // 
+            this.button_sortTickets.Location = new System.Drawing.Point(822, 93);
+            this.button_sortTickets.Name = "button_sortTickets";
+            this.button_sortTickets.Size = new System.Drawing.Size(75, 23);
+            this.button_sortTickets.TabIndex = 21;
+            this.button_sortTickets.Text = "Sort";
+            this.button_sortTickets.UseVisualStyleBackColor = true;
+            this.button_sortTickets.Click += new System.EventHandler(this.button_sortTickets_Click);
+            // 
+            // textBox_deleteTickets
+            // 
+            this.textBox_deleteTickets.Location = new System.Drawing.Point(649, 13);
+            this.textBox_deleteTickets.Name = "textBox_deleteTickets";
+            this.textBox_deleteTickets.Size = new System.Drawing.Size(121, 20);
+            this.textBox_deleteTickets.TabIndex = 20;
+            // 
+            // comboBox_deleteBy
+            // 
+            this.comboBox_deleteBy.FormattingEnabled = true;
+            this.comboBox_deleteBy.Items.AddRange(new object[] {
+            "Id:",
+            "Buyer-name:"});
+            this.comboBox_deleteBy.Location = new System.Drawing.Point(522, 13);
+            this.comboBox_deleteBy.Name = "comboBox_deleteBy";
+            this.comboBox_deleteBy.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_deleteBy.TabIndex = 19;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(461, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(55, 13);
+            this.label17.TabIndex = 18;
+            this.label17.Text = "Delete by:";
+            // 
+            // button_deleteTickets
+            // 
+            this.button_deleteTickets.Location = new System.Drawing.Point(776, 6);
+            this.button_deleteTickets.Name = "button_deleteTickets";
+            this.button_deleteTickets.Size = new System.Drawing.Size(121, 32);
+            this.button_deleteTickets.TabIndex = 17;
+            this.button_deleteTickets.Text = "Delete Tickets";
+            this.button_deleteTickets.UseVisualStyleBackColor = true;
+            this.button_deleteTickets.Click += new System.EventHandler(this.button_deleteTickets_Click);
             // 
             // button_orderTickets
             // 
@@ -704,75 +844,131 @@
             this.button_newTicketBack.UseVisualStyleBackColor = true;
             this.button_newTicketBack.Click += new System.EventHandler(this.button_newTicketBack_Click);
             // 
-            // checkBox_match
+            // tabPage_login
             // 
-            this.checkBox_match.AutoSize = true;
-            this.checkBox_match.Checked = true;
-            this.checkBox_match.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_match.Location = new System.Drawing.Point(6, 141);
-            this.checkBox_match.Name = "checkBox_match";
-            this.checkBox_match.Size = new System.Drawing.Size(56, 17);
-            this.checkBox_match.TabIndex = 13;
-            this.checkBox_match.Text = "Match";
-            this.checkBox_match.UseVisualStyleBackColor = true;
+            this.tabPage_login.Controls.Add(this.button_loginUser);
+            this.tabPage_login.Controls.Add(this.button_loginAdmin);
+            this.tabPage_login.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_login.Name = "tabPage_login";
+            this.tabPage_login.Size = new System.Drawing.Size(903, 526);
+            this.tabPage_login.TabIndex = 4;
+            this.tabPage_login.Text = "Login";
+            this.tabPage_login.UseVisualStyleBackColor = true;
             // 
-            // checkBox_performance
+            // button_loginAdmin
             // 
-            this.checkBox_performance.AutoSize = true;
-            this.checkBox_performance.Checked = true;
-            this.checkBox_performance.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_performance.Location = new System.Drawing.Point(68, 141);
-            this.checkBox_performance.Name = "checkBox_performance";
-            this.checkBox_performance.Size = new System.Drawing.Size(86, 17);
-            this.checkBox_performance.TabIndex = 14;
-            this.checkBox_performance.Text = "Performance";
-            this.checkBox_performance.UseVisualStyleBackColor = true;
+            this.button_loginAdmin.Location = new System.Drawing.Point(212, 202);
+            this.button_loginAdmin.Name = "button_loginAdmin";
+            this.button_loginAdmin.Size = new System.Drawing.Size(133, 56);
+            this.button_loginAdmin.TabIndex = 0;
+            this.button_loginAdmin.Text = "Login as Admin";
+            this.button_loginAdmin.UseVisualStyleBackColor = true;
+            this.button_loginAdmin.Click += new System.EventHandler(this.button_loginAdmin_Click);
             // 
-            // button_deleteTickets
+            // button_loginUser
             // 
-            this.button_deleteTickets.Location = new System.Drawing.Point(776, 83);
-            this.button_deleteTickets.Name = "button_deleteTickets";
-            this.button_deleteTickets.Size = new System.Drawing.Size(121, 32);
-            this.button_deleteTickets.TabIndex = 17;
-            this.button_deleteTickets.Text = "Delete Tickets";
-            this.button_deleteTickets.UseVisualStyleBackColor = true;
-            this.button_deleteTickets.Click += new System.EventHandler(this.button_deleteTickets_Click);
+            this.button_loginUser.Location = new System.Drawing.Point(558, 202);
+            this.button_loginUser.Name = "button_loginUser";
+            this.button_loginUser.Size = new System.Drawing.Size(133, 56);
+            this.button_loginUser.TabIndex = 1;
+            this.button_loginUser.Text = "Login as User";
+            this.button_loginUser.UseVisualStyleBackColor = true;
+            this.button_loginUser.Click += new System.EventHandler(this.button_loginUser_Click);
             // 
-            // label17
+            // tabPage_userEvents
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(461, 93);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(55, 13);
-            this.label17.TabIndex = 18;
-            this.label17.Text = "Delete by:";
+            this.tabPage_userEvents.Controls.Add(this.checkBox_userEventsPerformance);
+            this.tabPage_userEvents.Controls.Add(this.checkBox_userEventsMatch);
+            this.tabPage_userEvents.Controls.Add(this.comboBox_userEventsOrder);
+            this.tabPage_userEvents.Controls.Add(this.label21);
+            this.tabPage_userEvents.Controls.Add(this.label22);
+            this.tabPage_userEvents.Controls.Add(this.comboBox_userEventsSortBy);
+            this.tabPage_userEvents.Controls.Add(this.button_userEventsSort);
+            this.tabPage_userEvents.Controls.Add(this.listBox_userEvents);
+            this.tabPage_userEvents.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_userEvents.Name = "tabPage_userEvents";
+            this.tabPage_userEvents.Size = new System.Drawing.Size(903, 526);
+            this.tabPage_userEvents.TabIndex = 5;
+            this.tabPage_userEvents.Text = "Events";
+            this.tabPage_userEvents.UseVisualStyleBackColor = true;
             // 
-            // comboBox_deleteBy
+            // checkBox_userEventsPerformance
             // 
-            this.comboBox_deleteBy.FormattingEnabled = true;
-            this.comboBox_deleteBy.Items.AddRange(new object[] {
-            "Id:",
-            "Buyer-name:"});
-            this.comboBox_deleteBy.Location = new System.Drawing.Point(522, 90);
-            this.comboBox_deleteBy.Name = "comboBox_deleteBy";
-            this.comboBox_deleteBy.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_deleteBy.TabIndex = 19;
+            this.checkBox_userEventsPerformance.AutoSize = true;
+            this.checkBox_userEventsPerformance.Checked = true;
+            this.checkBox_userEventsPerformance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_userEventsPerformance.Location = new System.Drawing.Point(73, 32);
+            this.checkBox_userEventsPerformance.Name = "checkBox_userEventsPerformance";
+            this.checkBox_userEventsPerformance.Size = new System.Drawing.Size(86, 17);
+            this.checkBox_userEventsPerformance.TabIndex = 22;
+            this.checkBox_userEventsPerformance.Text = "Performance";
+            this.checkBox_userEventsPerformance.UseVisualStyleBackColor = true;
             // 
-            // textBox_deleteTickets
+            // checkBox_userEventsMatch
             // 
-            this.textBox_deleteTickets.Location = new System.Drawing.Point(649, 90);
-            this.textBox_deleteTickets.Name = "textBox_deleteTickets";
-            this.textBox_deleteTickets.Size = new System.Drawing.Size(121, 20);
-            this.textBox_deleteTickets.TabIndex = 20;
+            this.checkBox_userEventsMatch.AutoSize = true;
+            this.checkBox_userEventsMatch.Checked = true;
+            this.checkBox_userEventsMatch.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_userEventsMatch.Location = new System.Drawing.Point(11, 32);
+            this.checkBox_userEventsMatch.Name = "checkBox_userEventsMatch";
+            this.checkBox_userEventsMatch.Size = new System.Drawing.Size(56, 17);
+            this.checkBox_userEventsMatch.TabIndex = 21;
+            this.checkBox_userEventsMatch.Text = "Match";
+            this.checkBox_userEventsMatch.UseVisualStyleBackColor = true;
             // 
-            // label18
+            // comboBox_userEventsOrder
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(483, 247);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 13);
-            this.label18.TabIndex = 15;
-            this.label18.Text = "* not required";
+            this.comboBox_userEventsOrder.FormattingEnabled = true;
+            this.comboBox_userEventsOrder.Location = new System.Drawing.Point(230, 5);
+            this.comboBox_userEventsOrder.Name = "comboBox_userEventsOrder";
+            this.comboBox_userEventsOrder.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_userEventsOrder.TabIndex = 20;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(188, 8);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(36, 13);
+            this.label21.TabIndex = 19;
+            this.label21.Text = "Order:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(8, 8);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(43, 13);
+            this.label22.TabIndex = 18;
+            this.label22.Text = "Sort by:";
+            // 
+            // comboBox_userEventsSortBy
+            // 
+            this.comboBox_userEventsSortBy.FormattingEnabled = true;
+            this.comboBox_userEventsSortBy.Location = new System.Drawing.Point(57, 5);
+            this.comboBox_userEventsSortBy.Name = "comboBox_userEventsSortBy";
+            this.comboBox_userEventsSortBy.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_userEventsSortBy.TabIndex = 17;
+            // 
+            // button_userEventsSort
+            // 
+            this.button_userEventsSort.Location = new System.Drawing.Point(357, 3);
+            this.button_userEventsSort.Name = "button_userEventsSort";
+            this.button_userEventsSort.Size = new System.Drawing.Size(75, 23);
+            this.button_userEventsSort.TabIndex = 16;
+            this.button_userEventsSort.Text = "Sort";
+            this.button_userEventsSort.UseVisualStyleBackColor = true;
+            this.button_userEventsSort.Click += new System.EventHandler(this.button_userEventsSort_Click);
+            // 
+            // listBox_userEvents
+            // 
+            this.listBox_userEvents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBox_userEvents.FormattingEnabled = true;
+            this.listBox_userEvents.HorizontalScrollbar = true;
+            this.listBox_userEvents.Location = new System.Drawing.Point(5, 53);
+            this.listBox_userEvents.Name = "listBox_userEvents";
+            this.listBox_userEvents.Size = new System.Drawing.Size(891, 470);
+            this.listBox_userEvents.TabIndex = 15;
             // 
             // ticketShopForm
             // 
@@ -798,6 +994,9 @@
             this.tabPage_orderTickets.ResumeLayout(false);
             this.tabPage_orderTickets.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_amountTickets)).EndInit();
+            this.tabPage_login.ResumeLayout(false);
+            this.tabPage_userEvents.ResumeLayout(false);
+            this.tabPage_userEvents.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -870,6 +1069,23 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button_deleteTickets;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox comboBox_orderTickets;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox comboBox_sortByTickets;
+        private System.Windows.Forms.Button button_sortTickets;
+        private System.Windows.Forms.TabPage tabPage_login;
+        private System.Windows.Forms.Button button_loginUser;
+        private System.Windows.Forms.Button button_loginAdmin;
+        private System.Windows.Forms.TabPage tabPage_userEvents;
+        private System.Windows.Forms.CheckBox checkBox_userEventsPerformance;
+        private System.Windows.Forms.CheckBox checkBox_userEventsMatch;
+        private System.Windows.Forms.ComboBox comboBox_userEventsOrder;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox comboBox_userEventsSortBy;
+        private System.Windows.Forms.Button button_userEventsSort;
+        private System.Windows.Forms.ListBox listBox_userEvents;
     }
 }
 
