@@ -13,7 +13,6 @@ namespace TicketShop
         public string Location { get; private set; }
         public int AvailableSeats { get; private set; }
         public List<Ticket> Tickets { get; private set; }
-        public List<Buyer> Buyers { get; private set; }
 
         public enum SortBy : byte { Buyername, Price };
 
@@ -21,23 +20,31 @@ namespace TicketShop
         //-----------------------------------------------------------------------------------
 
         /// <summary>
-        /// Sorteert op naam oplopend (alfabetisch)
+        /// Sorteert op naam aflopend (alfabetisch)
         /// </summary>
         private class NameDescendingComparer : IComparer<Event>
         {
             int IComparer<Event>.Compare(Event x, Event y)
             {
-                return string.Compare(y.Name, x.Name);
+                if (x != null && y != null)
+                {
+                    return string.Compare(y.Name, x.Name);
+                }
+                return 0;
             }
         }
         /// <summary>
-        /// Sorteert op naam aflopend (alfabetisch)
+        /// Sorteert op naam oplopend (alfabetisch)
         /// </summary>
         private class NameAscendingComparer : IComparer<Event>
         {
             int IComparer<Event>.Compare(Event x, Event y)
             {
-                return string.Compare(x.Name, y.Name);
+                if (x != null && y != null)
+                {
+                    return string.Compare(x.Name, y.Name);
+                }
+                return 0;
             }
         }
         /// <summary>
@@ -47,7 +54,11 @@ namespace TicketShop
         {
             int IComparer<Event>.Compare(Event x, Event y)
             {
-                return x.Id.CompareTo(y.Id);
+                if (x != null && y != null)
+                {
+                    return x.Id.CompareTo(y.Id);
+                }
+                return 0;
             }
         }
         /// <summary>
@@ -57,7 +68,11 @@ namespace TicketShop
         {
             int IComparer<Event>.Compare(Event x, Event y)
             {
-                return y.Id.CompareTo(x.Id);
+                if(x != null && y != null)
+                {
+                    return y.Id.CompareTo(x.Id);
+                }
+                return 0;
             }
         }
         /// <summary>
@@ -67,7 +82,11 @@ namespace TicketShop
         {
             int IComparer<Event>.Compare(Event x, Event y)
             {
-                return x.Date.CompareTo(y.Date);
+                if (x != null && y != null)
+                {
+                    return x.Date.CompareTo(y.Date);
+                }
+                return 0;
             }
         }
         /// <summary>
@@ -77,7 +96,11 @@ namespace TicketShop
         {
             int IComparer<Event>.Compare(Event x, Event y)
             {
-                return y.Date.CompareTo(x.Date);
+                if (x != null && y != null)
+                {
+                    return y.Date.CompareTo(x.Date);
+                }
+                return 0;
             }
         }
         //-----------------------------------------------------------------------------------
@@ -89,7 +112,6 @@ namespace TicketShop
             Date = date;
             Location = location;
             AvailableSeats = availableSeats;
-            Buyers = new List<Buyer>();
             Tickets = new List<Ticket>();
         }
 
@@ -159,7 +181,7 @@ namespace TicketShop
             {
                 foreach (int index in ticketsIndexes)
                 {
-                    Tickets[index].setNewBuyer(buyer);
+                    Tickets[index].SetNewBuyer(buyer);
                 }
                 return true;
             }
@@ -218,21 +240,6 @@ namespace TicketShop
         {
             return Tickets.IndexOf(FindTicket(id));
         }
-
-        /// <summary>
-        /// Zoekt of het een koper kan vinden met de naam
-        /// </summary>
-        /// <param name="name">Het ID van de ticket die moet worden gezocht en gevonden</param>
-        /// <returns>De koper als deze is gevonden, anders null</returns>
-        public Buyer FindBuyer(string name)
-        {
-            foreach (Buyer b in Buyers)
-            {
-                if (b.Name == name) { return b; }
-            }
-            return null;
-        }
-
         
         /// <summary>
         /// Default sort-order

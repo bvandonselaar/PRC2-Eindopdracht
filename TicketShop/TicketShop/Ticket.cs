@@ -35,7 +35,11 @@ namespace TicketShop
         {
             int IComparer<Ticket>.Compare(Ticket x, Ticket y)
             {
-                return x.Price.CompareTo(y.Price);
+                if (x != null && y != null)
+                {
+                    return y.Price.CompareTo(x.Price);
+                }
+                return 0;
             }
         }
 
@@ -46,7 +50,11 @@ namespace TicketShop
         {
             int IComparer<Ticket>.Compare(Ticket x, Ticket y)
             {
-                return y.Price.CompareTo(x.Price);
+                if (x != null && y != null)
+                {
+                    return x.Price.CompareTo(y.Price);
+                }
+                return 0;
             }
         }
 
@@ -54,7 +62,11 @@ namespace TicketShop
         {
             int IComparer<Ticket>.Compare(Ticket x, Ticket y)
             {
-                return string.Compare(x.Buyer.Name, y.Buyer.Name);
+                if (x != null && y != null)
+                {
+                    return string.Compare(x.Buyer.Name, y.Buyer.Name);
+                }
+                return 0;
             }
         }
 
@@ -62,7 +74,11 @@ namespace TicketShop
         {
             int IComparer<Ticket>.Compare(Ticket x, Ticket y)
             {
-                return string.Compare(y.Buyer.Name, x.Buyer.Name);
+                if (x != null && y != null)
+                {
+                    return string.Compare(y.Buyer.Name, x.Buyer.Name);
+                }
+                return 0;
             }
         }
         
@@ -76,9 +92,16 @@ namespace TicketShop
             StartingPrice = startingPrice;
         }
 
-        public void setNewBuyer(Buyer b)
+        public void SetNewBuyer(Buyer b)
         {
-            Buyer = b;
+            if (b != null)
+            {
+                Buyer = b;
+            }
+            else
+            {
+                throw new CantSetBuyerException();
+            }
         }
 
         

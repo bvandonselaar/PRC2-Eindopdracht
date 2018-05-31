@@ -258,7 +258,7 @@ namespace TicketShop
         {
             if (selectedEventIndex != -1)
             {
-                administration.DeleteEvent(selectedEventIndex);
+                administration.DeleteEvent(GetIdFromListBoxItem(listBox_events));
                 loadEvents(true, true);
             }
             else { MessageBox.Show("Select Event"); }
@@ -377,13 +377,19 @@ namespace TicketShop
             Buyer b = new Buyer(textBox_buyerName.Text, dateTimePicker_buyerBirthday.Value, textBox_buyerAddress.Text);
             int amount = (int)numeric_amountTickets.Value;
             int chairClass = Convert.ToInt32(comboBox_class.SelectedItem.ToString().Trim());
-
-            if (administration.Events[selectedEventIndex].OrderTickets(amount, chairClass, b))
+            try
             {
-                loadTab(Tab.Tickets);
-                loadTickets(selectedEventIndex);
+                if (administration.Events[selectedEventIndex].OrderTickets(amount, chairClass, b))
+                {
+                    loadTab(Tab.Tickets);
+                    loadTickets(selectedEventIndex);
+                }
+                else { MessageBox.Show("Not enough tickets in that class for your order or buyer is invalid"); }
             }
-            else { MessageBox.Show("Not enough tickets in that class for your order or buyer is invalid"); }
+            catch(CantSetBuyerException)
+            {
+                MessageBox.Show("Cant set the buyer for the tickets");
+            }
         }
 
         /// <summary>
@@ -408,9 +414,11 @@ namespace TicketShop
         /// <param name="e"></param>
         private void button_save_Click(object sender, EventArgs e)
         {
-            SaveFileDialog openSave = new SaveFileDialog();
-            openSave.Filter = "Data Files (*.dat) | *.dat";
-            openSave.InitialDirectory = Application.StartupPath;
+            SaveFileDialog openSave = new SaveFileDialog
+            {
+                Filter = "Data Files (*.dat) | *.dat",
+                InitialDirectory = Application.StartupPath
+            };
 
             try
             {
@@ -441,9 +449,11 @@ namespace TicketShop
         /// <param name="e"></param>
         private void button_load_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openLoad = new OpenFileDialog();
-            openLoad.Filter = "Data Files (*.dat) | *.dat";
-            openLoad.InitialDirectory = Application.StartupPath;
+            OpenFileDialog openLoad = new OpenFileDialog
+            {
+                Filter = "Data Files (*.dat) | *.dat",
+                InitialDirectory = Application.StartupPath
+            };
 
             try
             {
@@ -476,9 +486,11 @@ namespace TicketShop
         /// <param name="e"></param>
         private void button_export_Click(object sender, EventArgs e)
         {
-            SaveFileDialog openSave = new SaveFileDialog();
-            openSave.Filter = "Text Files (*.txt) | *.txt";
-            openSave.InitialDirectory = Application.StartupPath;
+            SaveFileDialog openSave = new SaveFileDialog
+            {
+                Filter = "Text Files (*.txt) | *.txt",
+                InitialDirectory = Application.StartupPath
+            };
 
             try
             {
