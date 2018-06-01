@@ -571,9 +571,18 @@ namespace TicketShop
 
         private void button_loginUser_Click(object sender, EventArgs e)
         {
-            loadTab(Tab.userEvents);
-            administration.Load(@"formData.dat");
-            LoadUserEvents(true, true);
+            try
+            {
+                loadTab(Tab.userEvents);
+                administration.Load(@"save.dat");
+                LoadUserEvents(true, true);
+            }
+            catch(FileNotFoundException)
+            {
+                MessageBox.Show("No file found with the name 'save.dat' !");
+                loadTab(Tab.Login);
+            }
+            
         }
 
         private void LoadUserEvents(bool match, bool performance)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicketShop
 {
-    class CantSetBuyerException : Exception
+   public class CantSetBuyerException : Exception
     {
         public CantSetBuyerException()
         {

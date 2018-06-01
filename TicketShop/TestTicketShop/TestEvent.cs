@@ -74,7 +74,6 @@ namespace TestTicketShop
         public void TestEventGenerateTickets()
         { 
             Ticket t = new Ticket(id, clas, seat, buyer, startingPrice);
-            Assert.AreEqual(599, e2.AvailableSeats);
             e2.GenerateTickets(startingPrice);
             int[] array = { 0, 0, 0 };
             foreach(Ticket ti in e1.Tickets)

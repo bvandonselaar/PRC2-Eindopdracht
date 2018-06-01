@@ -254,7 +254,6 @@ namespace TicketShop
         }
         
 
-        
         /// <summary>
         /// Sorteert de tickets op basis van de 2 gegevens
         /// </summary>
@@ -278,7 +277,6 @@ namespace TicketShop
             }
 
             Tickets.Sort(compareEvents);
-            
         }
         
 

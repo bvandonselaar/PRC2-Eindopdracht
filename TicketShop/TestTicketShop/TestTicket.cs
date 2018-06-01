@@ -42,6 +42,14 @@ namespace TestTicketShop
             Assert.AreEqual(buyer, t.Buyer);
         }
         [TestMethod]
+        [ExpectedException(typeof(CantSetBuyerException))]
+        public void SetBuyerNull()
+        {
+            Buyer buyer = new Buyer(name, Birth, Address);
+            Ticket t = new Ticket(id, clas, seat, buyer, startingPrice);
+            t.SetNewBuyer(null);
+        }
+        [TestMethod]
         public void TestTicketToString()
         {
             decimal x = Decimal.Round(startingPrice/clas2, 2);
