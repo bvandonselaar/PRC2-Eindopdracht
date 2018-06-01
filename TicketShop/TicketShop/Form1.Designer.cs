@@ -30,6 +30,9 @@
         {
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl_administration = new System.Windows.Forms.TabControl();
+            this.tabPage_login = new System.Windows.Forms.TabPage();
+            this.button_loginUser = new System.Windows.Forms.Button();
+            this.button_loginAdmin = new System.Windows.Forms.Button();
             this.tabPage_events = new System.Windows.Forms.TabPage();
             this.checkBox_performance = new System.Windows.Forms.CheckBox();
             this.checkBox_match = new System.Windows.Forms.CheckBox();
@@ -99,9 +102,6 @@
             this.textBox_buyerName = new System.Windows.Forms.TextBox();
             this.label_editTicket = new System.Windows.Forms.Label();
             this.button_newTicketBack = new System.Windows.Forms.Button();
-            this.tabPage_login = new System.Windows.Forms.TabPage();
-            this.button_loginAdmin = new System.Windows.Forms.Button();
-            this.button_loginUser = new System.Windows.Forms.Button();
             this.tabPage_userEvents = new System.Windows.Forms.TabPage();
             this.checkBox_userEventsPerformance = new System.Windows.Forms.CheckBox();
             this.checkBox_userEventsMatch = new System.Windows.Forms.CheckBox();
@@ -111,7 +111,9 @@
             this.comboBox_userEventsSortBy = new System.Windows.Forms.ComboBox();
             this.button_userEventsSort = new System.Windows.Forms.Button();
             this.listBox_userEvents = new System.Windows.Forms.ListBox();
+            this.label_buyerData = new System.Windows.Forms.Label();
             this.tabControl_administration.SuspendLayout();
+            this.tabPage_login.SuspendLayout();
             this.tabPage_events.SuspendLayout();
             this.tabPage_event.SuspendLayout();
             this.groupBox_match.SuspendLayout();
@@ -121,7 +123,6 @@
             this.tabPage_tickets.SuspendLayout();
             this.tabPage_orderTickets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_amountTickets)).BeginInit();
-            this.tabPage_login.SuspendLayout();
             this.tabPage_userEvents.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,6 +143,37 @@
             this.tabControl_administration.SelectedIndex = 0;
             this.tabControl_administration.Size = new System.Drawing.Size(911, 552);
             this.tabControl_administration.TabIndex = 0;
+            // 
+            // tabPage_login
+            // 
+            this.tabPage_login.Controls.Add(this.button_loginUser);
+            this.tabPage_login.Controls.Add(this.button_loginAdmin);
+            this.tabPage_login.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_login.Name = "tabPage_login";
+            this.tabPage_login.Size = new System.Drawing.Size(903, 526);
+            this.tabPage_login.TabIndex = 4;
+            this.tabPage_login.Text = "Login";
+            this.tabPage_login.UseVisualStyleBackColor = true;
+            // 
+            // button_loginUser
+            // 
+            this.button_loginUser.Location = new System.Drawing.Point(558, 202);
+            this.button_loginUser.Name = "button_loginUser";
+            this.button_loginUser.Size = new System.Drawing.Size(133, 56);
+            this.button_loginUser.TabIndex = 1;
+            this.button_loginUser.Text = "Login as User";
+            this.button_loginUser.UseVisualStyleBackColor = true;
+            this.button_loginUser.Click += new System.EventHandler(this.button_loginUser_Click);
+            // 
+            // button_loginAdmin
+            // 
+            this.button_loginAdmin.Location = new System.Drawing.Point(212, 202);
+            this.button_loginAdmin.Name = "button_loginAdmin";
+            this.button_loginAdmin.Size = new System.Drawing.Size(133, 56);
+            this.button_loginAdmin.TabIndex = 0;
+            this.button_loginAdmin.Text = "Login as Admin";
+            this.button_loginAdmin.UseVisualStyleBackColor = true;
+            this.button_loginAdmin.Click += new System.EventHandler(this.button_loginAdmin_Click);
             // 
             // tabPage_events
             // 
@@ -578,6 +610,7 @@
             // 
             // tabPage_tickets
             // 
+            this.tabPage_tickets.Controls.Add(this.label_buyerData);
             this.tabPage_tickets.Controls.Add(this.comboBox_orderTickets);
             this.tabPage_tickets.Controls.Add(this.label19);
             this.tabPage_tickets.Controls.Add(this.label20);
@@ -844,37 +877,6 @@
             this.button_newTicketBack.UseVisualStyleBackColor = true;
             this.button_newTicketBack.Click += new System.EventHandler(this.button_newTicketBack_Click);
             // 
-            // tabPage_login
-            // 
-            this.tabPage_login.Controls.Add(this.button_loginUser);
-            this.tabPage_login.Controls.Add(this.button_loginAdmin);
-            this.tabPage_login.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_login.Name = "tabPage_login";
-            this.tabPage_login.Size = new System.Drawing.Size(903, 526);
-            this.tabPage_login.TabIndex = 4;
-            this.tabPage_login.Text = "Login";
-            this.tabPage_login.UseVisualStyleBackColor = true;
-            // 
-            // button_loginAdmin
-            // 
-            this.button_loginAdmin.Location = new System.Drawing.Point(212, 202);
-            this.button_loginAdmin.Name = "button_loginAdmin";
-            this.button_loginAdmin.Size = new System.Drawing.Size(133, 56);
-            this.button_loginAdmin.TabIndex = 0;
-            this.button_loginAdmin.Text = "Login as Admin";
-            this.button_loginAdmin.UseVisualStyleBackColor = true;
-            this.button_loginAdmin.Click += new System.EventHandler(this.button_loginAdmin_Click);
-            // 
-            // button_loginUser
-            // 
-            this.button_loginUser.Location = new System.Drawing.Point(558, 202);
-            this.button_loginUser.Name = "button_loginUser";
-            this.button_loginUser.Size = new System.Drawing.Size(133, 56);
-            this.button_loginUser.TabIndex = 1;
-            this.button_loginUser.Text = "Login as User";
-            this.button_loginUser.UseVisualStyleBackColor = true;
-            this.button_loginUser.Click += new System.EventHandler(this.button_loginUser_Click);
-            // 
             // tabPage_userEvents
             // 
             this.tabPage_userEvents.Controls.Add(this.checkBox_userEventsPerformance);
@@ -970,6 +972,14 @@
             this.listBox_userEvents.Size = new System.Drawing.Size(891, 470);
             this.listBox_userEvents.TabIndex = 15;
             // 
+            // label_buyerData
+            // 
+            this.label_buyerData.AutoSize = true;
+            this.label_buyerData.Location = new System.Drawing.Point(153, 16);
+            this.label_buyerData.Name = "label_buyerData";
+            this.label_buyerData.Size = new System.Drawing.Size(0, 13);
+            this.label_buyerData.TabIndex = 26;
+            // 
             // ticketShopForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -979,6 +989,7 @@
             this.Name = "ticketShopForm";
             this.Text = "TicketShop";
             this.tabControl_administration.ResumeLayout(false);
+            this.tabPage_login.ResumeLayout(false);
             this.tabPage_events.ResumeLayout(false);
             this.tabPage_events.PerformLayout();
             this.tabPage_event.ResumeLayout(false);
@@ -994,7 +1005,6 @@
             this.tabPage_orderTickets.ResumeLayout(false);
             this.tabPage_orderTickets.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_amountTickets)).EndInit();
-            this.tabPage_login.ResumeLayout(false);
             this.tabPage_userEvents.ResumeLayout(false);
             this.tabPage_userEvents.PerformLayout();
             this.ResumeLayout(false);
@@ -1086,6 +1096,7 @@
         private System.Windows.Forms.ComboBox comboBox_userEventsSortBy;
         private System.Windows.Forms.Button button_userEventsSort;
         private System.Windows.Forms.ListBox listBox_userEvents;
+        private System.Windows.Forms.Label label_buyerData;
     }
 }
 

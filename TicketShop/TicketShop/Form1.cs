@@ -354,6 +354,7 @@ namespace TicketShop
             {
                 selectedEventIndex = -1;
             }
+            label_buyerData.Text = administration.Events[selectedEventIndex].Tickets[selectedTicketIndex].Buyer.ToString();
         }
 
         /// <summary>

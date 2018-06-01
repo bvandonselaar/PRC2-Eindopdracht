@@ -21,9 +21,9 @@ namespace TicketShop
         }
         public override string ToString()
         {
-            return "Buyer: " + Name
-            + ", " + Birth.ToShortDateString()
-            + ", " + Address; 
+            return "Buyername: " + Name + " "
+            + "\nBirthday: " + Birth.ToShortDateString() + " "
+            + "\nAddress: " + Address; 
         }
     }
 }
